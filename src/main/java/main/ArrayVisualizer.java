@@ -248,8 +248,18 @@ final public class ArrayVisualizer {
         this.visualsThread = new Thread() {
             @Override
             public void run() {
+                try {
+                    Thread.sleep(17);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Renderer.initializeVisuals(ArrayVisualizer.this, ArrayVisualizer.this.VisualStyles);
                 while(true) {
+                    try {
+                        Thread.sleep(17);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Renderer.updateVisuals(ArrayVisualizer.this);
                     Renderer.drawVisual(ArrayVisualizer.this.VisualStyles, array, ArrayVisualizer.this, mainRender, extraRender, Highlights);
                     int coltmp = 255;
