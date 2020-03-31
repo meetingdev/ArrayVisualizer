@@ -50,7 +50,7 @@ SOFTWARE.
  * @author S630690
  */
 
-final public class ArrayFrame extends javax.swing.JFrame {
+final public class ArrayFrame extends JFrame {
     final private static long serialVersionUID = 1L;
 
     private int[] array;
@@ -89,7 +89,7 @@ final public class ArrayFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        this.jLabel1 = new javax.swing.JLabel();
+        this.jLabel1 = new JLabel();
         this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 11);
 
         jLabel1.setText("Array Size");
@@ -154,7 +154,7 @@ final public class ArrayFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private JLabel jLabel1;
     private javax.swing.JSlider jSlider;
     // End of variables declaration//GEN-END:variables
 }

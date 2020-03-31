@@ -55,7 +55,7 @@ SOFTWARE.
  *
  * @author S630690
  */
-final public class UtilFrame extends javax.swing.JFrame {
+final public class UtilFrame extends JFrame {
     final private static long serialVersionUID = 1L;
 
     private int[] array;
@@ -98,7 +98,7 @@ final public class UtilFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        this.jLabel1 = new javax.swing.JLabel();
+        this.jLabel1 = new JLabel();
         this.jButton1 = new javax.swing.JButton();
         this.jButton2 = new javax.swing.JButton();
         this.jButton3 = new javax.swing.JButton();
@@ -457,7 +457,7 @@ final public class UtilFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private JLabel jLabel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

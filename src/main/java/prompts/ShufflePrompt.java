@@ -41,7 +41,7 @@ SOFTWARE.
  *
  * @author S630690
  */
-final public class ShufflePrompt extends javax.swing.JFrame implements Frame {
+final public class ShufflePrompt extends JFrame implements Frame {
 
     /**
      * 

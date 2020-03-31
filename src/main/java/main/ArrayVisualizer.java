@@ -249,11 +249,9 @@ final public class ArrayVisualizer {
             @Override
             public void run() {
                 Renderer.initializeVisuals(ArrayVisualizer.this, ArrayVisualizer.this.VisualStyles);
-                
                 while(true) {
                     Renderer.updateVisuals(ArrayVisualizer.this);
                     Renderer.drawVisual(ArrayVisualizer.this.VisualStyles, array, ArrayVisualizer.this, mainRender, extraRender, Highlights);
-
                     int coltmp = 255;
                     mainRender.setColor(new Color(coltmp,coltmp,coltmp));
                     if(TEXTDRAW) {
