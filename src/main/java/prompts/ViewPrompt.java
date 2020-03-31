@@ -42,7 +42,7 @@ SOFTWARE.
  * @author S630690
  */
 
-final public class ViewPrompt extends javax.swing.JFrame implements Frame {
+final public class ViewPrompt extends JFrame implements Frame {
 
     private static final long serialVersionUID = 1L;
 
