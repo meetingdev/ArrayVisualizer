@@ -384,6 +384,7 @@ final public class UtilFrame extends JFrame {
         if(speedPromptAllowed) {
             try{
                 Delays.setSleepRatio(Double.parseDouble(JOptionPane.showInputDialog(null, "Modify the visual's speed below (Ex. 10 = Ten times faster)", Delays.getSleepRatio())));
+                Delays.changeSkipped(false);
             }
             catch(Exception e) { //TODO: Disable exception on Dialog cancel
                 System.out.println("Not a number! (" + e.getMessage() + ")");
