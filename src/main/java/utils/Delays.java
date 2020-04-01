@@ -34,58 +34,82 @@ SOFTWARE.
 final public class Delays {
     private volatile double SLEEPRATIO;
     private volatile boolean SKIPPED;
-    
+    private volatile boolean isDelayOverrided;
+
     private double addamt;
     private double delay;
-    
+
+
     public Delays() {
         this.SLEEPRATIO = 1.0;
         this.SKIPPED = false;
         this.addamt = 0.0;
+        this.isDelayOverrided = false;
     }
-    
+
+    public void setDelayOverride(double value) {
+        this.isDelayOverrided = true;
+        this.delay = value;
+    }
+
+    public void setOverride(boolean value) {
+        this.isDelayOverrided = value;
+    }
+
     public double getCurrentDelay() {
         return this.delay;
     }
+
     public void setCurrentDelay(double value) {
         this.delay = value;
     }
-    
+
     public double getSleepRatio() {
         return this.SLEEPRATIO;
     }
+
     public void setSleepRatio(double sleepRatio) {
         this.SLEEPRATIO = sleepRatio;
     }
-    
+
     public boolean skipped() {
         return this.SKIPPED;
     }
+
     public void changeSkipped(boolean Bool) {
         this.SKIPPED = Bool;
     }
-    
-    public void sleep(double millis){
-        if(millis <= 0) {
-            return;
-        }
-        
-        this.delay = (millis * (1 / this.SLEEPRATIO));
-        this.addamt += this.delay;
-        
-        long amt = (long) this.delay;
-        if(this.addamt >= 1){
-            amt += (int) this.addamt;
-            this.addamt -= (int) this.addamt;
-        }
-        
-        try {
-            // With this for loop, you can change the speed of sorts without waiting for the current delay to finish.
-            for(int i = 0; i < amt / this.SLEEPRATIO; i++) {
-                Thread.sleep(1);
+
+    public void sleep(double millis) {
+        if (!isDelayOverrided||SKIPPED) {
+            if (millis <= 0) {
+                return;
             }
-        } catch(Exception ex) {
-            Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
+
+            this.delay = (millis * (1 / this.SLEEPRATIO));
+            this.addamt += this.delay;
+
+            long amt = (long) this.delay;
+            if (this.addamt >= 1) {
+                amt += (int) this.addamt;
+                this.addamt -= (int) this.addamt;
+            }
+            try {
+                // With this for loop, you can change the speed of sorts without waiting for the current delay to finish.
+                for (int i = 0; i < amt / this.SLEEPRATIO; i++) {
+                    Thread.sleep(1);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                Thread.sleep((long) delay);
+            } catch (Exception ex) {
+                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
+
     }
 }
