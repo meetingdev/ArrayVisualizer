@@ -1,7 +1,6 @@
 package visuals;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import main.ArrayVisualizer;
 import utils.Highlights;
@@ -30,10 +29,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
 final public class Bars {
+    boolean strokeEnabled = true;
+    public void setStrokeEnabled(boolean value){
+        this.strokeEnabled = value;
+    }
     public void drawVisual(int[] array, ArrayVisualizer ArrayVisualizer, Renderer Renderer, Graphics2D mainRender, Graphics2D extraRender, Highlights Highlights) {
         for(int i = 0; i < ArrayVisualizer.getCurrentLength(); i++){
             if(Highlights.fancyFinishActive()) {
@@ -72,6 +77,14 @@ final public class Bars {
                 if(width > 0) {
                     y = (int) (((ArrayVisualizer.windowHeight() - 20)) - array[i] * Renderer.getYScale());
                     mainRender.fillRect(Renderer.getOffset() + 20, y, width, (int) Math.max(array[i] * Renderer.getYScale(), 1));
+                    if(strokeEnabled && width >= 5){
+                        double thickness = 1;
+                        Stroke oldStroke = mainRender.getStroke();
+                        mainRender.setStroke(new BasicStroke((float) thickness));
+                        mainRender.setColor(Color.BLACK);
+                        mainRender.drawLine(Renderer.getOffset() + 20, y, Renderer.getOffset() + 20, (int) Math.max(array[i] * Renderer.getYScale()-1, 1) + y);
+                        mainRender.setStroke(oldStroke);
+                    }
                 }
                 
                 Renderer.setOffset(Renderer.getOffset() + width);

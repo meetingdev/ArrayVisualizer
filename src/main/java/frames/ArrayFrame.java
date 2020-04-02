@@ -42,6 +42,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
@@ -90,7 +92,7 @@ final public class ArrayFrame extends JFrame {
     private void initComponents() {
 
         this.jLabel1 = new JLabel();
-        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 11);
+        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
 
         jLabel1.setText("Array Size");
 

@@ -45,6 +45,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
@@ -105,6 +107,7 @@ final public class UtilFrame extends JFrame {
         this.jCheckBox3 = new javax.swing.JCheckBox();
         this.disableMarksCB = new javax.swing.JCheckBox();
         this.delayORCheckBox = new javax.swing.JCheckBox();
+        this.strokeCB = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
         this.FPSBtn = new javax.swing.JButton();
@@ -113,7 +116,7 @@ final public class UtilFrame extends JFrame {
         this.jCheckBox6 = new javax.swing.JCheckBox();
         this.jCheckBox7 = new javax.swing.JCheckBox();
         this.jCheckBox8 = new javax.swing.JCheckBox();
-        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 11);
+        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
 
         jLabel1.setText("Settings");
 
@@ -224,6 +227,15 @@ final public class UtilFrame extends JFrame {
             }
         });
 
+        strokeCB.setSelected(true);
+        strokeCB.setText("Enable Bars Stroke");
+        strokeCB.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                strokeCBActionPerformed();
+            }
+        });
+
         jCheckBox4.setSelected(true);
         jCheckBox4.setText("Calc Real Time");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -298,6 +310,7 @@ final public class UtilFrame extends JFrame {
                                                 .addComponent(this.jCheckBox2)
                                                 .addComponent(this.jCheckBox3)
                                                 .addComponent(this.disableMarksCB)
+                                                .addComponent(this.strokeCB)
                                                 .addComponent(this.jCheckBox4)
                                                 .addComponent(this.jCheckBox6)
                                                 .addComponent(this.jCheckBox7)
@@ -327,6 +340,7 @@ final public class UtilFrame extends JFrame {
                                 .addComponent(this.jCheckBox2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jCheckBox8)
+                                .addComponent(this.strokeCB)
                                 .addComponent(this.disableMarksCB)
                                 .addGap(7, 7, 7)
                                 .addComponent(this.jButton3)
@@ -440,6 +454,11 @@ final public class UtilFrame extends JFrame {
         Highlights.clearAllMarks();
     }
 
+    public void strokeCBActionPerformed(){
+        ArrayVisualizer.Renderer.Bars.setStrokeEnabled(strokeCB.isSelected());
+
+    }
+
     public void setFPSBtnEnabled(boolean enabled){
         FPSBtn.setEnabled(enabled);
     }
@@ -535,6 +554,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox disableMarksCB;
+    private javax.swing.JCheckBox strokeCB;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox delayORCheckBox;
