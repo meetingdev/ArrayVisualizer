@@ -103,6 +103,7 @@ final public class UtilFrame extends JFrame {
         this.jCheckBox2 = new javax.swing.JCheckBox();
         this.jButton4 = new javax.swing.JButton();
         this.jCheckBox3 = new javax.swing.JCheckBox();
+        this.disableMarksCB = new javax.swing.JCheckBox();
         this.delayORCheckBox = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
@@ -214,6 +215,15 @@ final public class UtilFrame extends JFrame {
             }
         });
 
+        disableMarksCB.setSelected(false);
+        disableMarksCB.setText("Disable Marks");
+        disableMarksCB.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disableMarksCheckBoxActionPerformed();
+            }
+        });
+
         jCheckBox4.setSelected(true);
         jCheckBox4.setText("Calc Real Time");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +297,7 @@ final public class UtilFrame extends JFrame {
                                                 .addComponent(this.jCheckBox1)
                                                 .addComponent(this.jCheckBox2)
                                                 .addComponent(this.jCheckBox3)
+                                                .addComponent(this.disableMarksCB)
                                                 .addComponent(this.jCheckBox4)
                                                 .addComponent(this.jCheckBox6)
                                                 .addComponent(this.jCheckBox7)
@@ -316,6 +327,7 @@ final public class UtilFrame extends JFrame {
                                 .addComponent(this.jCheckBox2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jCheckBox8)
+                                .addComponent(this.disableMarksCB)
                                 .addGap(7, 7, 7)
                                 .addComponent(this.jButton3)
                                 .addGap(5, 5, 5)
@@ -423,6 +435,11 @@ final public class UtilFrame extends JFrame {
         Delays.changeSkipped(false);
     }
 
+    public void disableMarksCheckBoxActionPerformed(){
+        Highlights.setMarksEnabled(!disableMarksCB.isSelected());
+        Highlights.clearAllMarks();
+    }
+
     public void setFPSBtnEnabled(boolean enabled){
         FPSBtn.setEnabled(enabled);
     }
@@ -517,6 +534,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JButton FPSBtn;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox disableMarksCB;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox delayORCheckBox;

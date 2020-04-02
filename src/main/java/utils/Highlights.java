@@ -30,52 +30,62 @@ SOFTWARE.
 
 final public class Highlights {
     private volatile int[] Highlights;
-    
+
     private volatile int maxIndexMarked;    // The Highlights array is huge and slows down the visualizer if all its indices are read.
                                             // In an attempt to speed up the containsPosition() method while also giving anyone room
                                             // to use the full array, this variable keeps track of the farthest index an array position
                                             // has been highlighted at. The containsPosition() method only scans the Highlights array
                                             // up to index maxIndexMarked.
-    
+
                                             // If an index is used in markArray() that is higher than maxPossibleMarked, the variable
                                             // is updated. If the highest index used in Highlights is removed with clearMark(), the
                                             // next biggest index (less than what was removed) is found and updates maxIndexMarked.
-                                            
+
                                             // Trivially, clearAllMarks() resets maxIndexMarked to zero. This variable also serves
                                             // as a subtle design hint for anyone who wants to add an algorithm to the app to highlight
                                             // array positions at low indices which are close together.
-                                            
+
                                             // This way, the program runs more efficiently, and looks pretty. :)
-    
+
     private volatile int markCount;
-    
+
     private boolean FANCYFINISH;
+    private boolean marksEnabled;
     private volatile boolean fancyFinish;
     private volatile int trackFinish;
-    
+
     public Highlights(int maximumLength) {
         this.Highlights = new int[maximumLength];
         this.FANCYFINISH = true;
+        this.marksEnabled = true;
         this.maxIndexMarked = 0;
         this.markCount = 0;
-        
+
         Arrays.fill(Highlights, -1);
     }
-    
+
+    public void setMarksEnabled(boolean value){
+        this.marksEnabled = value;
+    }
+
+    public boolean getMarksEnabled(){
+        return this.marksEnabled;
+    }
+
     public boolean fancyFinishEnabled() {
         return this.FANCYFINISH;
     }
     public void toggleFancyFinishes(boolean Bool) {
         this.FANCYFINISH = Bool;
     }
-    
+
     public boolean fancyFinishActive() {
         return this.fancyFinish;
     }
     public void toggleFancyFinish(boolean Bool) {
         this.fancyFinish = Bool;
     }
-    
+
     public int getFancyFinishPosition() {
         return this.trackFinish;
     }
@@ -85,14 +95,14 @@ final public class Highlights {
     public void resetFancyFinish() {
         this.trackFinish = -1; // Magic number that clears the green sweep animation
     }
-    
+
     public int getMaxIndex() {
         return this.maxIndexMarked;
     }
     public int getMarkCount() {
         return this.markCount;
     }
-    
+
     //Consider revising highlightList().
     public int[] highlightList() {
         return this.Highlights;
@@ -110,32 +120,34 @@ final public class Highlights {
         return false;
     }
     public void markArray(int marker, int markPosition) {
-        try {
-            if(markPosition < 0) {
-                if(markPosition == -1) throw new Exception("Highlights.markArray(): Invalid position! -1 is reserved for the clearMark method.");
-                else if(markPosition == -5) throw new Exception("Highlights.markArray(): Invalid position! -5 was the constant originally used to unmark numbers in the array. Instead, use the clearMark method.");
-                else throw new Exception("Highlights.markArray(): Invalid position!");
-            }
-            else {
-                Highlights[marker] = markPosition;
-                this.markCount++;
-                
-                if(marker > this.maxIndexMarked) {
-                    this.maxIndexMarked = marker;
+        if(this.marksEnabled){
+            try {
+                if(markPosition < 0) {
+                    if(markPosition == -1) throw new Exception("Highlights.markArray(): Invalid position! -1 is reserved for the clearMark method.");
+                    else if(markPosition == -5) throw new Exception("Highlights.markArray(): Invalid position! -5 was the constant originally used to unmark numbers in the array. Instead, use the clearMark method.");
+                    else throw new Exception("Highlights.markArray(): Invalid position!");
+                }
+                else {
+                    Highlights[marker] = markPosition;
+                    this.markCount++;
+
+                    if(marker > this.maxIndexMarked) {
+                        this.maxIndexMarked = marker;
+                    }
                 }
             }
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     public void clearMark(int marker) {
         Highlights[marker] = -1; // -1 is used as the magic number to unmark a position in the main array
         this.markCount--;
-        
+
         if(marker == this.maxIndexMarked) {
             this.maxIndexMarked = 0;
-            
+
             for(int i = marker - 1; i >= 0; i--) {
                 if(Highlights[i] != -1) {
                     this.maxIndexMarked = i;
