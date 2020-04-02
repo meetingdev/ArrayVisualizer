@@ -39,6 +39,7 @@ import visuals.VisualStyles;
  * - - "0th" Linked Dot
  * - - .dls file in soundfont dir
  * - - 1080p in OBS(?)
+ * - - Visual time doesn't match on sorts with same real time while Delay Override is in use
  * - Create:
  * - - Better code design for ViewPrompt
  * - - options to choose comb gap
@@ -59,6 +60,11 @@ import visuals.VisualStyles;
  * - - option for custom parts for intro sorts
  * - - option for simple shatter rate???
  * - - Timo Bingmann's green sweep also *verify* a sorted array
+ * - - Bars Stroke
+ * - - Text Antialiasing
+ * - - FPS Changing
+ * - - Delay Override
+ * - - Fix Speed after skip sort
  * - Finish:
  * - - SkaSort
  * - - HolyGrailSort
@@ -116,6 +122,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
@@ -180,14 +188,14 @@ final public class ArrayVisualizer {
     private Delays Delays;
     private Highlights Highlights;
     private Reads Reads;
-    private Renderer Renderer;
+    public Renderer Renderer;
     private Sounds Sounds;
     private Timer Timer;
     private VisualStyles VisualStyles;
     private Writes Writes;
 
     public ArrayVisualizer() {
-        this.currentLen = 2048;
+        this.currentLen = 64;
         
         this.Delays = new Delays();
         this.Highlights = new Highlights(this.MAX_ARRAY_VAL);

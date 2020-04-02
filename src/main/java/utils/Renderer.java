@@ -35,6 +35,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
@@ -57,12 +59,11 @@ final class WindowState {
 }
 
 final public class Renderer {
-    private Bars Bars;
+    public Bars Bars;
     private Circular Circular;
     private Hoops Hoops;
     private Mesh Mesh;
     private Pixels Pixels;
-    
     private volatile double xscl; //TODO: Change to xScale/yScale
     private volatile double yscl;
     
@@ -375,4 +376,7 @@ final public class Renderer {
     public void drawVisual(VisualStyles VisualStyles, int[] array, ArrayVisualizer ArrayVisualizer, Graphics2D mainRender, Graphics2D extraRender, Highlights Highlights) {
         VisualStyles.drawVisual(array, ArrayVisualizer, this, mainRender, extraRender, Highlights);
     }
+    /*public void setBarsStrokeEnabled(boolean value){
+        Bars.setStrokeEnabled(value);
+    }*/
 }
