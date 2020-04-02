@@ -1,14 +1,6 @@
 package main;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Stroke;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -142,6 +134,7 @@ final public class ArrayVisualizer {
     private String[] InvalidSorts;
     
     private volatile int currentLen;
+    private double threadDelay = 16.67;
     
     private ArrayManager ArrayManager;
     private SortAnalyzer SortAnalyzer;
@@ -248,15 +241,10 @@ final public class ArrayVisualizer {
         this.visualsThread = new Thread() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(17);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 Renderer.initializeVisuals(ArrayVisualizer.this, ArrayVisualizer.this.VisualStyles);
                 while(true) {
                     try {
-                        Thread.sleep(17);
+                        Thread.sleep((long) threadDelay);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -287,7 +275,14 @@ final public class ArrayVisualizer {
         Sounds.startAudioThread();
         this.drawWindows();
     }
-    
+    public void setFPS(int fps){
+        this.threadDelay = 1000/(double)fps;
+    }
+
+    public int getFPS(){
+        return (int) Math.round(1000/this.threadDelay);
+    }
+
     public ArrayManager getArrayManager() {
         return this.ArrayManager;
     }
@@ -523,8 +518,9 @@ final public class ArrayVisualizer {
             double speed = Delays.getSleepRatio(); 
             this.fancyFinish();
             Delays.setSleepRatio(speed);
-            
+            Delays.changeSkipped(false);
             Highlights.clearAllMarks();
+            UtilFrame.setFPSBtnEnabled(true);
         }
     }
     

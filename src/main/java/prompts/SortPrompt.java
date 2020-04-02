@@ -218,6 +218,7 @@ final public class SortPrompt extends JFrame implements Frame {
                 }
             }
         }.start();
+        UtilFrame.setFPSBtnEnabled(false);
         UtilFrame.jButton1ResetText();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -237,6 +238,7 @@ final public class SortPrompt extends JFrame implements Frame {
                 }
             }
         }.start();
+        UtilFrame.setFPSBtnEnabled(false);
         UtilFrame.jButton1ResetText();
         dispose();
     }//GEN-LAST:event_jList1ValueChanged
@@ -251,6 +253,7 @@ final public class SortPrompt extends JFrame implements Frame {
                 sortThread.ReportComparativeSort(array, selection);
             }
         }.start();
+        UtilFrame.setFPSBtnEnabled(false);
         UtilFrame.jButton1ResetText();
         dispose();
     }//GEN-LAST:event_jList2ValueChanged
