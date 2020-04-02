@@ -456,7 +456,7 @@ final public class UtilFrame extends JFrame {
     }
 
     private void jButton4ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
-        Delays.setSleepRatio(Double.MAX_VALUE);
+        //Delays.setSleepRatio(Double.MAX_VALUE);
         Delays.changeSkipped(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
