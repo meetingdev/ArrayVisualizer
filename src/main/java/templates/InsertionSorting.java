@@ -47,8 +47,10 @@ public abstract class InsertionSorting extends Sort {
             while(pos >= start && Reads.compare(array[pos], current) > 0){
                 Writes.write(array, pos + 1, array[pos], sleep, true, auxwrite);
                 pos--;
+                Delays.sleep(0.025);
             }
             Writes.write(array, pos + 1, current, sleep, true, auxwrite);
+            //Delays.sleep(0.025);
         }
     }
 }
