@@ -31,6 +31,7 @@ final public class LLQuickSort extends Sort {
                 Writes.swap(array, i, j, 1, true, false);
                 i++;
             }
+            Delays.sleep(0.025);
         }
         Writes.swap(array, i, hi, 1, true, false);
         return i;
