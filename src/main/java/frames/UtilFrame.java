@@ -106,6 +106,7 @@ final public class UtilFrame extends JFrame {
         this.delayORCheckBox = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
+        this.FPSBtn = new javax.swing.JButton();
         this.jCheckBox5 = new javax.swing.JCheckBox();
         this.jButton6 = new javax.swing.JButton();
         this.jCheckBox6 = new javax.swing.JCheckBox();
@@ -174,6 +175,9 @@ final public class UtilFrame extends JFrame {
                 jButton4ActionPerformed();
             }
         });
+
+        FPSBtn.setText("Change FPS");
+        FPSBtn.addActionListener(evt -> changeFPS());
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Show Shuffle");
@@ -297,6 +301,7 @@ final public class UtilFrame extends JFrame {
                                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addComponent(this.delayORCheckBox).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                                                                 .addComponent(this.jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(this.FPSBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                 .addComponent(this.jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                                                 .addGap(0, 10, Short.MAX_VALUE))
                                 );
@@ -316,11 +321,14 @@ final public class UtilFrame extends JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(this.delayORCheckBox)
                                 .addGap(12, 12, 12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(this.FPSBtn)
                                 .addGap(7, 7, 7)
                                 .addComponent(this.jCheckBox1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -415,6 +423,10 @@ final public class UtilFrame extends JFrame {
         Delays.changeSkipped(false);
     }
 
+    public void setFPSBtnEnabled(boolean enabled){
+        FPSBtn.setEnabled(enabled);
+    }
+
     private void jCheckBox1ActionPerformed() {//GEN-FIRST:event_jCheckBox2ActionPerformed
         ArrayVisualizer.toggleShuffleAnimation(jCheckBox1.isSelected());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -437,6 +449,10 @@ final public class UtilFrame extends JFrame {
             jButton3.setText("Change Speed");
             //jButton3.addActionListener(evt -> jButton3ActionPerformed());
         }
+    }
+
+    private void changeFPS(){
+        ArrayVisualizer.setFPS(Integer.parseInt(JOptionPane.showInputDialog(null, "Set the FPS. More FPS - smoother animation, but more GPU load.", ArrayVisualizer.getFPS())));
     }
 
     private void jButton4ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
@@ -498,6 +514,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton FPSBtn;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
