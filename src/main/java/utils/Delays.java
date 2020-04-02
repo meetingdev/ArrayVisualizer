@@ -52,6 +52,10 @@ final public class Delays {
         this.delay = value;
     }
 
+    public boolean isDelayOverrided(){
+        return isDelayOverrided;
+    }
+
     public void setOverride(boolean value) {
         this.isDelayOverrided = value;
     }

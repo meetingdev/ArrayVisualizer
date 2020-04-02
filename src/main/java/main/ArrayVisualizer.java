@@ -515,12 +515,26 @@ final public class ArrayVisualizer {
         Highlights.clearAllMarks();
 
         if(Highlights.fancyFinishEnabled()) {
-            double speed = Delays.getSleepRatio(); 
-            this.fancyFinish();
-            Delays.setSleepRatio(speed);
-            Delays.changeSkipped(false);
-            Highlights.clearAllMarks();
-            UtilFrame.setFPSBtnEnabled(true);
+            if(Delays.isDelayOverrided()){
+                double curDelay = Delays.getCurrentDelay();
+                Delays.setOverride(false);
+                double speed = Delays.getSleepRatio();
+                this.fancyFinish();
+                Delays.setSleepRatio(speed);
+                Delays.changeSkipped(false);
+                Highlights.clearAllMarks();
+                UtilFrame.setFPSBtnEnabled(true);
+                Delays.setOverride(true);
+                Delays.setCurrentDelay(curDelay);
+            }else{
+                double speed = Delays.getSleepRatio();
+                this.fancyFinish();
+                Delays.setSleepRatio(speed);
+                Delays.changeSkipped(false);
+                Highlights.clearAllMarks();
+                UtilFrame.setFPSBtnEnabled(true);
+            }
+
         }
     }
     
