@@ -255,6 +255,8 @@ final public class ArrayVisualizer {
                     if(TEXTDRAW) {
                         Font f = mainRender.getFont();
                         mainRender.setFont(typeFace);
+                        mainRender.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                         mainRender.drawString(category + ": " + heading, 15, (int)(cw/1280.0*40)+30);
                         mainRender.drawString(formatter.format(currentLen) + " Numbers", 15, (int)(cw/1280.0*65)+30);
                         mainRender.drawString(String.format("Delay: " + formatter.format(Delays.getCurrentDelay()) + "ms"), 15, (int)(cw/1280.0*105)+30);
