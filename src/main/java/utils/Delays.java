@@ -106,7 +106,7 @@ final public class Delays {
             } catch (Exception ex) {
                 Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (SKIPPED) {
+        } else if (SKIPPED || millis == 0) {
             try {
                 Thread.sleep(0);
             } catch (Exception ex) {
@@ -122,4 +122,8 @@ final public class Delays {
         }
 
     }
+
+    /*public void sleep(double millis) {
+        sleep(millis, false);
+    }*/
 }
