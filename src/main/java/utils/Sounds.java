@@ -110,13 +110,14 @@ final public class Sounds {
                     int noteCount = Math.min(Highlights.getMarkCount(), NUMCHANNELS);
                     int voice = 0;
 
-                    for(int i : Highlights.highlightList()) {
+                    //for(int i : Highlights.highlightList()) {
+                    for(Mark i : Highlights.highlightList()) {
                         try {
-                            if(i != -1) {
+                            if(i.getPosition() != -1) {
                                 int currentLen = ArrayVisualizer.getCurrentLength();
 
                                 //PITCH
-                                double pitch = Sounds.this.array[Math.min(Math.max(i, 0), currentLen - 1)] / (double) currentLen * (PITCHMAX - PITCHMIN) + PITCHMIN;
+                                double pitch = Sounds.this.array[Math.min(Math.max(i.getPosition(), 0), currentLen - 1)] / (double) currentLen * (PITCHMAX - PITCHMIN) + PITCHMIN;
                                 int pitchmajor = (int) pitch;
                                 int pitchminor = (int)((pitch-((int)pitch))*8192d)+8192;
 

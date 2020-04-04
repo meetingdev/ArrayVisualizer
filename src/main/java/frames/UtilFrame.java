@@ -107,6 +107,7 @@ final public class UtilFrame extends JFrame {
         this.jCheckBox3 = new javax.swing.JCheckBox();
         this.disableMarksCB = new javax.swing.JCheckBox();
         this.delayORCheckBox = new javax.swing.JCheckBox();
+        this.additionalMarksCB = new javax.swing.JCheckBox();
         this.strokeCB = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
@@ -227,6 +228,15 @@ final public class UtilFrame extends JFrame {
             }
         });
 
+        additionalMarksCB.setSelected(false);
+        additionalMarksCB.setText("Additional Marks");
+        additionalMarksCB.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdditionalMarksCBActionPerformed();
+            }
+        });
+
         strokeCB.setSelected(true);
         strokeCB.setText("Enable Bars Stroke");
         strokeCB.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +319,7 @@ final public class UtilFrame extends JFrame {
                                                 .addComponent(this.jCheckBox1)
                                                 .addComponent(this.jCheckBox2)
                                                 .addComponent(this.jCheckBox3)
+                                                .addComponent(this.additionalMarksCB)
                                                 .addComponent(this.disableMarksCB)
                                                 .addComponent(this.strokeCB)
                                                 .addComponent(this.jCheckBox4)
@@ -341,6 +352,7 @@ final public class UtilFrame extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jCheckBox8)
                                 .addComponent(this.strokeCB)
+                                .addComponent(this.additionalMarksCB)
                                 .addComponent(this.disableMarksCB)
                                 .addGap(7, 7, 7)
                                 .addComponent(this.jButton3)
@@ -456,7 +468,11 @@ final public class UtilFrame extends JFrame {
 
     public void strokeCBActionPerformed(){
         ArrayVisualizer.Renderer.Bars.setStrokeEnabled(strokeCB.isSelected());
+    }
 
+    public void AdditionalMarksCBActionPerformed(){
+        Highlights.setAdditionalMarksEnabled(additionalMarksCB.isSelected());
+        Highlights.clearAllMarks();
     }
 
     public void setFPSBtnEnabled(boolean enabled){
@@ -555,6 +571,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox disableMarksCB;
     private javax.swing.JCheckBox strokeCB;
+    private javax.swing.JCheckBox additionalMarksCB;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox delayORCheckBox;
