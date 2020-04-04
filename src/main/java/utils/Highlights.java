@@ -69,7 +69,7 @@ final public class Highlights {
         this.Highlights = new ArrayList<>(maximumLength);
         this.FANCYFINISH = true;
         this.marksEnabled = true;
-        this.AdditionalMarksEnabled = false;
+        this.AdditionalMarksEnabled = true;
         this.maxIndexMarked = 0;
         this.markCount = 0;
 
@@ -144,7 +144,7 @@ final public class Highlights {
 
         return false;
     }
-    public void markArray(int marker, int markPosition) {
+    public void markArray(int marker, int markPosition, Color color, boolean isAdditional) {
         if(this.marksEnabled){
             try {
                 if(markPosition < 0) {
@@ -157,7 +157,12 @@ final public class Highlights {
 
                     //Highlights.get(marker).setPosition(markPosition);
                     //Highlights.set(marker, new Mark(markPosition, Highlights.get(marker).getColor()));
-                    this.setMarkPosition(marker, markPosition);
+                    if(AdditionalMarksEnabled&&isAdditional){
+                        this.setMark(marker, markPosition, color, true);
+                    }
+                    else if(!isAdditional){
+                        this.setMark(marker, markPosition, color, false);
+                    }
                     this.markCount++;
 
                     if(marker > this.maxIndexMarked) {
@@ -170,7 +175,9 @@ final public class Highlights {
             }
         }
     }
-
+    public void markArray(int marker, int markPosition){
+        this.markArray(marker, markPosition, Color.RED, false);
+    }
     public void clearMark(int marker) {
         //Highlights[marker] = -1; // -1 is used as the magic number to unmark a position in the main array
         //Highlights.set(marker, new Mark(-1, Highlights.get(marker).getColor()));
@@ -200,15 +207,15 @@ final public class Highlights {
         return this.Highlights.get(index);
     }
 
-    public void setMark(int index, int position, Color color){
-        this.Highlights.set(index, new Mark(position, color));
+    public void setMark(int index, int position, Color color, boolean isAdditional){
+        this.Highlights.set(index, new Mark(position, color, isAdditional));
     }
 
     public void setMarkPosition(int index, int position){
-        this.setMark(index, position, this.getMark(index).getColor());
+        this.setMark(index, position, this.getMark(index).getColor(), this.getMark(index).isAdditional);
     }
 
     public void setMarkColor(int index, Color color){
-        this.setMark(index, this.getMark(index).getPosition(), color);
+        this.setMark(index, this.getMark(index).getPosition(), color, this.getMark(index).isAdditional);
     }
 }
