@@ -1,10 +1,9 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
+import utils.Mark;
+import java.awt.*;
 
 /*
  * 
@@ -60,6 +59,7 @@ final public class SmartBubbleSort extends Sort {
                 Highlights.markArray(2, j + 1);
                 Delays.sleep(0.025);
             }
+            Highlights.markArray(i, i, Color.GREEN, true);
         }
     }
 }

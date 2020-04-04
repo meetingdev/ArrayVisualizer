@@ -228,7 +228,7 @@ final public class UtilFrame extends JFrame {
             }
         });
 
-        additionalMarksCB.setSelected(false);
+        additionalMarksCB.setSelected(true);
         additionalMarksCB.setText("Additional Marks");
         additionalMarksCB.addActionListener(new java.awt.event.ActionListener() {
             @Override

@@ -207,13 +207,16 @@ final public class Renderer {
         return Color.getHSBColor(((float) i / length), 1.0F, 0.8F);
     }
     
-    public void markBar(Graphics2D bar, boolean color, boolean rainbow, boolean analysis) {
-        if(color || rainbow) {
+    public void markBar(Graphics2D bar, boolean colorEnabled, boolean rainbow, boolean analysis, Color color) {
+        if(colorEnabled || rainbow) {
             if(analysis) bar.setColor(Color.WHITE);
             else         bar.setColor(Color.BLACK);
         }
         else if(analysis)    bar.setColor(Color.BLUE);
-        else                 bar.setColor(Color.RED);
+        else                 bar.setColor(color);
+    }
+    public void markBar(Graphics2D bar, boolean color, boolean rainbow, boolean analysis){
+        markBar(bar, color, rainbow, analysis, Color.RED);
     }
     private void markBarFancy(Graphics2D bar, boolean color, boolean rainbow) {
         if(!color && !rainbow) bar.setColor(Color.RED);
@@ -247,12 +250,13 @@ final public class Renderer {
     @SuppressWarnings("fallthrough")
     //The longer the array length, the more bars marked. Makes the visual easier to see when bars are thinner.
     public void colorMarkedBars(int logOfLen, int index, Highlights Highlights, Graphics2D mainRender, boolean colorEnabled, boolean rainbowEnabled, boolean analysis) {
+        if(!Highlights.getMark(index).isAdditional() || Highlights.getAdditionalMarksEnabled()){
         switch(logOfLen) {
-        case 12: if(Highlights.containsPosition(index - 3))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis);
-        case 11: if(Highlights.containsPosition(index - 2))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis);
-        case 10: if(Highlights.containsPosition(index - 1))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis);
-        default: if(Highlights.containsPosition(index))      markBar(mainRender, colorEnabled, rainbowEnabled, analysis);
-        }
+        case 12: if(Highlights.containsPosition(index - 3))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        case 11: if(Highlights.containsPosition(index - 2))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        case 10: if(Highlights.containsPosition(index - 1))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        default: if(Highlights.containsPosition(index))      markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        }}
     }
     
     @SuppressWarnings("fallthrough")
