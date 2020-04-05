@@ -43,7 +43,7 @@ public abstract class BinaryInsertionSorting extends Sort {
             
             while (lo < hi) {
                 int mid = lo + ((hi - lo) / 2); // avoid int overflow!
-                Highlights.markArray(2, mid);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, mid);
                 
                 Delays.sleep(compSleep);
                 

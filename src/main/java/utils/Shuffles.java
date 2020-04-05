@@ -95,7 +95,7 @@ public enum Shuffles {
             
             for(int i = 0; i < currentLen; i++) {
                 if(ArrayVisualizer.shuffleEnabled()) {
-                    Highlights.markArray(1, i);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                     Delays.sleep(1);
                 }
             }

@@ -48,12 +48,12 @@ final public class DualPivotQuickSort extends Sort {
                     Highlights.clearMark(2);
                     
                     l++;
-                    Highlights.markArray(4, l);
+                    Highlights.markArray(Highlights.getMaximumLength() + 4, l);
                 }
                 else if (Reads.compare(a[k], q) >= 0) {
                     while (Reads.compare(a[g], q) == 1 && k < g) {
                         g--;
-                        Highlights.markArray(3, g);
+                        Highlights.markArray(Highlights.getMaximumLength() + 3, g);
                         Delays.sleep(0.2);
                     }
                     
@@ -61,18 +61,18 @@ final public class DualPivotQuickSort extends Sort {
                     Highlights.clearMark(2);
                     
                     g--;
-                    Highlights.markArray(3, g);
+                    Highlights.markArray(Highlights.getMaximumLength() + 3, g);
                     
                     if (Reads.compare(a[k], p) == -1) {
                         Writes.swap(a, k, l, 0.2, true, false);
                         Highlights.clearMark(2);
                         
                         ++l;
-                        Highlights.markArray(4, l);
+                        Highlights.markArray(Highlights.getMaximumLength() + 4, l);
                     }
                 }
                 ++k;
-                Highlights.markArray(1, k);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, k);
                 Delays.sleep(0.2);
             }
             

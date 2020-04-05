@@ -82,8 +82,8 @@ final public class RecursiveCombSort extends Sort {
         }
         for (int i = start; i < (end - gap); i += gap){
             Delays.sleep(sleep);
-            Highlights.markArray(1, i);
-            Highlights.markArray(2, i + gap);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, i + gap);
             if(Reads.compare(array[i], array[i + gap]) == 1) {
                 Writes.swap(array, i, i + gap, sleep, true, false);
             }

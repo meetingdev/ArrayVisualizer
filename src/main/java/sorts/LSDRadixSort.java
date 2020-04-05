@@ -62,7 +62,7 @@ final public class LSDRadixSort extends Sort {
         
         for(int p = 0; p <= highestpower; p++){
             for(int i = 0; i < length; i++){
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 
                 int digit = Reads.getDigit(array[i], p, bucketCount);
                 registers[digit].add(array[i]);

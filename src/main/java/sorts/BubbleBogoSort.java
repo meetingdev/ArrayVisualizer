@@ -53,7 +53,7 @@ final public class BubbleBogoSort extends BogoSorting {
         while(!this.bogoIsSorted(array, currentLen)){
             int index1 = (int) (Math.random() * (currentLen - 1));
             
-            Highlights.markArray(1, index1);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, index1);
             
             if(Reads.compare(array[index1], array[index1 + 1]) == 1){
                 Writes.swap(array, index1, index1 + 1, 1, true, false);

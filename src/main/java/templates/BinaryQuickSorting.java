@@ -82,14 +82,14 @@ public abstract class BinaryQuickSorting extends Sort {
             i++;
             while(i < r && !Reads.getBit(array[i], bit)) {
                 i++;
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.45);
             }
             // Right is set
             j--;
             while(j > p && Reads.getBit(array[j], bit)) {
                 j--;
-                Highlights.markArray(2, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, j);
                 Delays.sleep(0.45);
             }
             // If i is less than j, we swap, otherwise we are done

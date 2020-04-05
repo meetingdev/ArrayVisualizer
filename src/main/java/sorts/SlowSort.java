@@ -31,7 +31,7 @@ final public class SlowSort extends Sort {
 	
 	    int m = i + ((j - i) / 2);
 	    
-	    Highlights.markArray(3, m);
+	    Highlights.markArray(Highlights.getMaximumLength() + 3, m);
 	
 	    this.slowSort(A, i, m);
 	    this.slowSort(A, m + 1, j);
@@ -40,8 +40,8 @@ final public class SlowSort extends Sort {
 	        Writes.swap(A, m, j, 1, true, false);
 	    }
 	    
-	    Highlights.markArray(1, j);
-	    Highlights.markArray(2, m);
+	    Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+	    Highlights.markArray(Highlights.getMaximumLength() + 2, m);
 	    
 	    this.slowSort(A, i, j - 1);
 	}

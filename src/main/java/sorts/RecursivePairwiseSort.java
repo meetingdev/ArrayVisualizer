@@ -51,8 +51,8 @@ final public class RecursivePairwiseSort extends Sort {
         int b = start + gap;
         while (b < end){
             Delays.sleep(sleep);
-            Highlights.markArray(1, b - gap);
-            Highlights.markArray(2, b);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, b - gap);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, b);
             if(Reads.compare(array[b - gap], array[b]) == 1) {
                 Writes.swap(array, b - gap, b, sleep, true, false);
             }
@@ -77,8 +77,8 @@ final public class RecursivePairwiseSort extends Sort {
                 c /= 2;
                 if (b + (c * gap) < end){
                     Delays.sleep(sleep);
-                    Highlights.markArray(1, b);
-                    Highlights.markArray(2, b + (c * gap));
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, b);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, b + (c * gap));
                     if(Reads.compare(array[b], array[b + (c * gap)]) == 1) {
                         Writes.swap(array, b, b + (c * gap), sleep, true, false);
                     }

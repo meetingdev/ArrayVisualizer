@@ -109,7 +109,7 @@ final public class Reads {
             if(Timer.timerEnabled()) Timer.stopLap();
             
             if(mark) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(sleep);
             }
         }
@@ -133,7 +133,7 @@ final public class Reads {
             if(Timer.timerEnabled()) Timer.stopLap();
             
             if(mark) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(sleep);
             }
         }
@@ -156,7 +156,7 @@ final public class Reads {
             
             if(Timer.timerEnabled()) Timer.stopLap();
             
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             Delays.sleep(0.75);
         }
         if(Timer.timerEnabled()) Timer.startLap();

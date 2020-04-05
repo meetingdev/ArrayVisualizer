@@ -57,7 +57,7 @@ final public class PatienceSort extends Sort {
 		int change = list.size() / 4;
 		
 		while(list.get(at).compare(find) != 0 && change > 0){
-			Highlights.markArray(1, at);
+			Highlights.markArray(Highlights.getMaximumLength() + 1, at);
 			Delays.sleep(0.5);
 			
 			if(list.get(at).compare(find) < 0)
@@ -68,7 +68,7 @@ final public class PatienceSort extends Sort {
 			change /= 2;
 		}
 		
-		Highlights.markArray(1, at);
+		Highlights.markArray(Highlights.getMaximumLength() + 1, at);
 		Delays.sleep(0.5);
 	}
 
@@ -80,7 +80,7 @@ final public class PatienceSort extends Sort {
         for (int x = 0; x < length; x++) {
             Pile newPile = new Pile();
             
-            Highlights.markArray(2, x);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, x);
             Writes.mockWrite(length, newPile.size(), array[x], 1);
             
             newPile.push(array[x]);
@@ -112,7 +112,7 @@ final public class PatienceSort extends Sort {
             Writes.mockWrite(length, smallPile.size(), 0, 0);
             Writes.write(array, c, smallPile.pop(), 1, false, false);
             
-            Highlights.markArray(1, c);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, c);
             
             if (!smallPile.isEmpty()) {
                 Writes.mockWrite(length, heap.size(), smallPile.get(0), 0);

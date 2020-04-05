@@ -6,6 +6,13 @@ import utils.Highlights;
 import utils.Reads;
 import utils.Writes;
 
+import java.awt.*;
+
+/*
+DO Time: Not Tested
+AddMarks: Working
+ */
+
 /*
  * 
 MIT License
@@ -54,12 +61,12 @@ final public class SelectionSort extends Sort {
             int lowestindex = i;
             
             for (int j = i + 1; j < length; j++) {
-                Highlights.markArray(2, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, j);
                 Delays.sleep(0.01);
                 
                 if (Reads.compare(array[j], array[lowestindex]) == -1){
                     lowestindex = j;
-                    Highlights.markArray(1, lowestindex);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, lowestindex);
                     Delays.sleep(0.01);
                 }
             }

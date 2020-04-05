@@ -51,15 +51,15 @@ public abstract class ShellSorting extends Sort {
                         int v = array[i];
                         int j = i;
 
-                        Highlights.markArray(1, j);
-                        Highlights.markArray(2, j - h);
+                        Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+                        Highlights.markArray(Highlights.getMaximumLength() + 2, j - h);
                         
                         Delays.sleep(0.2);
 
                         while (j >= h && Reads.compare(array[j - h], v) == 1)
                         {
-                            Highlights.markArray(1, j);
-                            Highlights.markArray(2, j - h);
+                            Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+                            Highlights.markArray(Highlights.getMaximumLength() + 2, j - h);
                             
                             Writes.write(array, j, array[j - h], 0.5, false, false);
                             j -= h;
@@ -76,15 +76,15 @@ public abstract class ShellSorting extends Sort {
                         int v = array[i];
                         int j = i;
 
-                        Highlights.markArray(1, j);
-                        Highlights.markArray(2, j - h);
+                        Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+                        Highlights.markArray(Highlights.getMaximumLength() + 2, j - h);
                         
                         Delays.sleep(0.2);
 
                         while (j >= h && Reads.compare(array[j - h], v) == 1)
                         {
-                            Highlights.markArray(1, j);
-                            Highlights.markArray(2, j - h);
+                            Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+                            Highlights.markArray(Highlights.getMaximumLength() + 2, j - h);
                             
                             Writes.write(array, j, array[j - h], 0.5, false, false);
                             j -= h;
@@ -107,7 +107,7 @@ public abstract class ShellSorting extends Sort {
 
                 while (j >= h && Reads.compare(array[j-h], v) == 1)
                 {
-                    Highlights.markArray(1, j);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, j);
                     
                     Writes.write(array, j, array[j - h], 1, true, false);
                     j -= h;

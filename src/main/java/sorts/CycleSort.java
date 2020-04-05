@@ -45,15 +45,15 @@ final public class CycleSort extends Sort {
              */
             
             int pos = cycleStart;
-            Highlights.markArray(3, pos);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos);
             
             for (int i = cycleStart + 1; i < length; i++) {
-                Highlights.markArray(2, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i);
                 Delays.sleep(0.01);
                 
                 if (Reads.compare(array[i], val) == -1) {
                     pos++;
-                    Highlights.markArray(1, pos);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, pos);
                     Delays.sleep(0.01);
                 }
 
@@ -61,14 +61,14 @@ final public class CycleSort extends Sort {
 
             // there aren't any
             if (pos == cycleStart) {
-                Highlights.markArray(1, pos);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, pos);
                 continue;
             }
 
             // Skip duplicates
             while (val == array[pos]) {
                 pos++;
-                Highlights.markArray(1, pos);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, pos);
             }
 
             // Put val into final position
@@ -82,22 +82,22 @@ final public class CycleSort extends Sort {
              */
             while (pos != cycleStart) {
                 pos = cycleStart;
-                Highlights.markArray(3, pos);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, pos);
                 
                 for (int i = cycleStart + 1; i < length; i++) {
-                    Highlights.markArray(2, i);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, i);
                     Delays.sleep(0.01);
                     
                     if (Reads.compare(array[i], val) == -1) {
                         pos++;
-                        Highlights.markArray(1, pos);
+                        Highlights.markArray(Highlights.getMaximumLength() + 1, pos);
                         Delays.sleep(0.01);
                     }
                 }
 
                 while (val == array[pos]) {
                     pos++;
-                    Highlights.markArray(1, pos);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, pos);
                 }
 
                 tmp = array[pos];

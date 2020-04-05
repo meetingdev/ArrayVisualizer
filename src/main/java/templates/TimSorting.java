@@ -626,8 +626,8 @@ final public class TimSorting {
         
         // Move first element of second run and deal with degenerate cases
         this.Writes.write(a, dest++, a[cursor2++], 1, false, false);
-        this.Highlights.markArray(1, dest);
-        this.Highlights.markArray(2, cursor2);
+        this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+        this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor2);
         if (--len2 == 0) {
             ts.Writes.arraycopy(tmp, cursor1, a, dest, len1, 0.875, true, false);
             return;
@@ -635,7 +635,7 @@ final public class TimSorting {
         if (len1 == 1) {
             ts.Writes.arraycopy(a, cursor2, a, dest, len2, 0.875, true, false);
             this.Writes.write(a, dest + len2, tmp[cursor1], 1, false, false); // Last elt of run 1 to end of merge
-            this.Highlights.markArray(1, dest + len2);
+            this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest + len2);
             return;
         }
         
@@ -651,15 +651,15 @@ final public class TimSorting {
             do {
                 if (this.Reads.compare(a[cursor2], tmp[cursor1]) < 0) {
                     this.Writes.write(a, dest++, a[cursor2++], 1, false, false);
-                    this.Highlights.markArray(1, dest);
-                    this.Highlights.markArray(2, cursor2);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor2);
                     count2++;
                     count1 = 0;
                     if (--len2 == 0)
                         break outer;
                 } else {
                     this.Writes.write(a, dest++, tmp[cursor1++], 1, false, false);
-                    this.Highlights.markArray(1, dest);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
                     count1++;
                     count2 = 0;
                     if (--len1 == 1)
@@ -683,8 +683,8 @@ final public class TimSorting {
                         break outer;
                 }
                 this.Writes.write(a, dest++, a[cursor2++], 1, false, false);
-                this.Highlights.markArray(1, dest);
-                this.Highlights.markArray(2, cursor2);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor2);
                 if (--len2 == 0)
                     break outer;
                 
@@ -698,7 +698,7 @@ final public class TimSorting {
                         break outer;
                 }
                 this.Writes.write(a, dest++, tmp[cursor1++], 1, false, false);
-                this.Highlights.markArray(1, dest);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
                 if (--len1 == 1)
                     break outer;
                 minGallop--;
@@ -712,7 +712,7 @@ final public class TimSorting {
         if (len1 == 1) {
             ts.Writes.arraycopy(a, cursor2, a, dest, len2, 0.875, true, false);
             this.Writes.write(a, dest + len2, tmp[cursor1], 1, false, false); //  Last elt of run 1 to end of merge
-            this.Highlights.markArray(1, dest + len2);
+            this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest + len2);
         } else if (len1 == 0) {
             throw new IllegalArgumentException(
                 "Comparison method violates its general contract!");
@@ -745,8 +745,8 @@ final public class TimSorting {
         
         // Move last element of first run and deal with degenerate cases
         this.Writes.write(a, dest--, a[cursor1--], 1, false, false);
-        this.Highlights.markArray(1, dest);
-        this.Highlights.markArray(2, cursor1);
+        this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+        this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor1);
         if (--len1 == 0) {
             ts.Writes.reversearraycopy(tmp, 0, a, dest - (len2 - 1), len2, 0.875, true, false);
             return;
@@ -756,7 +756,7 @@ final public class TimSorting {
             cursor1 -= len1;
             ts.Writes.reversearraycopy(a, cursor1 + 1, a, dest + 1, len1, 0.875, true, false);
             this.Writes.write(a, dest, tmp[cursor2], 1, false, false);
-            this.Highlights.markArray(1, dest);
+            this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
             return;
         }
         
@@ -773,15 +773,15 @@ final public class TimSorting {
             do {
                 if (this.Reads.compare(tmp[cursor2], a[cursor1]) < 0) {
                     this.Writes.write(a, dest--, a[cursor1--], 1, false, false);
-                    this.Highlights.markArray(1, dest);
-                    this.Highlights.markArray(2, cursor1);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor1);
                     count1++;
                     count2 = 0;
                     if (--len1 == 0)
                         break outer;
                 } else {
                     this.Writes.write(a, dest--, tmp[cursor2--], 1, false, false);
-                    this.Highlights.markArray(1, dest);
+                    this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
                     count2++;
                     count1 = 0;
                     if (--len2 == 1)
@@ -805,7 +805,7 @@ final public class TimSorting {
                         break outer;
                 }
                 this.Writes.write(a, dest--, tmp[cursor2--], 1, false, false);
-                this.Highlights.markArray(1, dest);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
                 if (--len2 == 1)
                     break outer;
                 
@@ -819,8 +819,8 @@ final public class TimSorting {
                         break outer;
                 }
                 this.Writes.write(a, dest--, a[cursor1--], 1, false, false);
-                this.Highlights.markArray(1, dest);
-                this.Highlights.markArray(2, cursor1);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
+                this.Highlights.markArray(Highlights.getMaximumLength() + 2, cursor1);
                 if (--len1 == 0)
                     break outer;
                 minGallop--;
@@ -836,7 +836,7 @@ final public class TimSorting {
             cursor1 -= len1;
             ts.Writes.reversearraycopy(a, cursor1 + 1, a, dest + 1, len1, 0.875, true, false);
             this.Writes.write(a, dest, tmp[cursor2], 1, false, false); // Move first elt of run2 to front of merge
-            this.Highlights.markArray(1, dest);
+            this.Highlights.markArray(Highlights.getMaximumLength() + 1, dest);
         } else if (len2 == 0) {
             throw new IllegalArgumentException(
                 "Comparison method violates its general contract!");

@@ -33,7 +33,7 @@ final public class PancakeSort extends Sort {
     
     private boolean sorted(int[] array, int length) {
         for(int i = 0; i < length - 1; i++) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             Delays.sleep(0.025);
             
             if(Reads.compare(array[i], array[i + 1]) > 0) return false;
@@ -44,7 +44,7 @@ final public class PancakeSort extends Sort {
     private int findMax(int[] arr, int end) {
         int index = 0, max = Integer.MIN_VALUE;
         for (int i = 0; i <= end; i++) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             
             if (Reads.compare(arr[i], max) == 1) {
                 max = arr[i];
@@ -61,7 +61,7 @@ final public class PancakeSort extends Sort {
     public void runSort(int[] array, int length, int bucketCount) {
         for (int i = length - 1; i >= 0; i--) {
             if(!this.sorted(array, i)) {
-                if(i + 1 != length) Highlights.markArray(3, i + 1);
+                if(i + 1 != length) Highlights.markArray(Highlights.getMaximumLength() + 3, i + 1);
                 int index = this.findMax(array, i);
 
                 if(index == 0) {

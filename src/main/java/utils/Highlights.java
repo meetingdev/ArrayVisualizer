@@ -67,7 +67,7 @@ final public class Highlights {
 
     public Highlights(int maximumLength) {
         //this.Highlights = new int[maximumLength];
-        this.Highlights = new ArrayList<>(maximumLength+3);
+        this.Highlights = new ArrayList<>(maximumLength+10);
         this.FANCYFINISH = true;
         this.marksEnabled = true;
         this.AdditionalMarksEnabled = true;
@@ -77,7 +77,7 @@ final public class Highlights {
 
         //Arrays.fill(Highlights, -1);
         //Collections.fill(Highlights, new Mark(-1));
-        for(int i = 0; i < maximumLength+3;++i){
+        for(int i = 0; i < maximumLength+10;++i){
            Highlights.add(new Mark(-1));
         }
     }

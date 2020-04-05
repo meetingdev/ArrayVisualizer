@@ -73,8 +73,8 @@ public abstract class MergeSorting extends Sort {
                     Writes.write(tmp, nxt, array[high++], 0, false, true);
                 }
                 
-                Highlights.markArray(1, low);
-                Highlights.markArray(2, high);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, low);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, high);
                 
                 Delays.sleep(1);
             }
@@ -83,7 +83,7 @@ public abstract class MergeSorting extends Sort {
             
             for(int i = 0; i < tmp.length; i++){
                 Writes.write(array, start + i, tmp[i], 1, false, false);
-                Highlights.markArray(1, start + i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, start + i);
             }
         }
     }

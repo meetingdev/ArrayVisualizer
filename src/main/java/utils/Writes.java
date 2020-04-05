@@ -178,7 +178,7 @@ final public class Writes {
     }
 
     public void write(int[] array, int at, int equals, double pause, boolean mark, boolean auxwrite) {
-        if(mark) Highlights.markArray(1, at);
+        if(mark) Highlights.markArray(Highlights.getMaximumLength() + 1, at);
         
         if(auxwrite) tempWrites++;
         else             writes++;
@@ -193,7 +193,7 @@ final public class Writes {
     }
 
     public void multiDimWrite(int[][] array, int x, int y, int equals, double pause, boolean mark, boolean auxwrite) {
-        if(mark) Highlights.markArray(1, x);
+        if(mark) Highlights.markArray(Highlights.getMaximumLength() + 1, x);
         
         if(auxwrite) tempWrites++;
         else             writes++;
@@ -285,8 +285,8 @@ final public class Writes {
             this.write(dest, destPos + i, src[srcPos + i], sleep, false, temp);
             
             if(mark) {
-                if(temp) Highlights.markArray(1, srcPos  + i);
-                else     Highlights.markArray(1, destPos + i);
+                if(temp) Highlights.markArray(Highlights.getMaximumLength() + 1, srcPos  + i);
+                else     Highlights.markArray(Highlights.getMaximumLength() + 1, destPos + i);
             }
         }
     }
@@ -296,8 +296,8 @@ final public class Writes {
             this.write(dest, destPos + i, src[srcPos + i], sleep, false, temp);
             
             if(mark) {
-                if(temp) Highlights.markArray(1, srcPos  + i);
-                else     Highlights.markArray(1, destPos + i);
+                if(temp) Highlights.markArray(Highlights.getMaximumLength() + 1, srcPos  + i);
+                else     Highlights.markArray(Highlights.getMaximumLength() + 1, destPos + i);
             }
         }
     }
