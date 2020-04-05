@@ -6,6 +6,8 @@ import utils.Highlights;
 import utils.Reads;
 import utils.Writes;
 
+import java.awt.*;
+
 /*
  * 
 MIT License
@@ -77,7 +79,9 @@ final public class DoubleSelectionSort extends Sort {
             
             Writes.swap(array, left, smallest, 0.02, true, false);
             Writes.swap(array, right, biggest, 0.02, true, false);
-            
+            Highlights.markArray(left, left, Color.GREEN, true);
+            Highlights.markArray(right, right, Color.GREEN, true);
+
             left++;
             right--;
             
