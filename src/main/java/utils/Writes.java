@@ -135,8 +135,8 @@ final public class Writes {
     }
 
     private void markSwap(int a, int b) {
-        Highlights.markArray(1, a);
-        Highlights.markArray(2, b);
+        Highlights.markArray(Highlights.getMaximumLength()+1, a);
+        Highlights.markArray(Highlights.getMaximumLength()+2, b);
     }
 
     public void swap(int[] array, int a, int b, double pause, boolean mark, boolean auxwrite) {

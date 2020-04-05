@@ -6,6 +6,11 @@ import utils.Mark;
 import java.awt.*;
 
 /*
+DO Time: Not Tested
+AddMarks: Working
+ */
+
+/*
  * 
 MIT License
 
@@ -55,8 +60,8 @@ final public class SmartBubbleSort extends Sort {
                     Writes.swap(array, j, j + 1, 0.075, true, false);
                 }
                 
-                Highlights.markArray(1, j);
-                Highlights.markArray(2, j + 1);
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j + 1);
                 Delays.sleep(0.025);
             }
             Highlights.markArray(i, i, Color.GREEN, true);
