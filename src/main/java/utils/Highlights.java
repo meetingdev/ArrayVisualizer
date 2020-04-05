@@ -209,6 +209,19 @@ final public class Highlights {
         this.markCount = 0;
     }
 
+    public void clearMarks(int start, int end){
+        for(int i = start; i<=end;++i){
+            this.clearMark(i);
+        }
+    }
+
+    public void clearAdditionalMarks(int start, int end){
+        for(int i = start; i<=end;++i){
+            if(this.getMark(i).isAdditional())
+            this.clearMark(i);
+        }
+    }
+
     public Mark getMark(int index){
         return this.Highlights.get(index);
     }
