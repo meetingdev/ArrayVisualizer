@@ -53,14 +53,14 @@ public abstract class HeapSorting extends Sort {
         }
         updateColor();
     }
-    
+
     // This version of heap sort works for max and min variants, alongside sorting 
     // partial ranges of an array.
     protected void heapSort(int[] arr, int start, int length, double sleep, boolean isMax) {
         int k = length;
-        while(k>0) {
-            k/=2;
-            for(int j = k;j < k*2;++j){
+        while (k > 0) {
+            k /= 2;
+            for (int j = k;j <= k * 2; ++j){
                 Highlights.markArray(j, j, color, true);
             }
             updateColor();
@@ -68,8 +68,7 @@ public abstract class HeapSorting extends Sort {
         heapify(arr, start, length, sleep, isMax);
 
         for (int i = length - start; i > 1; i--) {
-            Highlights.clearMark(i);
-            Highlights.markArray(i, i, Color.GREEN, true);
+            Highlights.markArray(i -1, i - 1, Color.GREEN, true);
             Writes.swap(arr, start, start + i - 1, sleep, true, false);
             siftDown(arr, 1, i - 1, start, sleep, isMax);
         }
