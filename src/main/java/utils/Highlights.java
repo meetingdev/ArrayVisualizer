@@ -63,19 +63,21 @@ final public class Highlights {
     private boolean AdditionalMarksEnabled;
     private volatile boolean fancyFinish;
     private volatile int trackFinish;
+    private volatile int maximumLength;
 
     public Highlights(int maximumLength) {
         //this.Highlights = new int[maximumLength];
-        this.Highlights = new ArrayList<>(maximumLength);
+        this.Highlights = new ArrayList<>(maximumLength+3);
         this.FANCYFINISH = true;
         this.marksEnabled = true;
         this.AdditionalMarksEnabled = true;
         this.maxIndexMarked = 0;
         this.markCount = 0;
+        this.maximumLength = maximumLength;
 
         //Arrays.fill(Highlights, -1);
         //Collections.fill(Highlights, new Mark(-1));
-        for(int i = 0; i < maximumLength;++i){
+        for(int i = 0; i < maximumLength+3;++i){
            Highlights.add(new Mark(-1));
         }
     }
@@ -86,6 +88,10 @@ final public class Highlights {
 
     public boolean getMarksEnabled(){
         return this.marksEnabled;
+    }
+
+    public int getMaximumLength(){
+        return this.maximumLength;
     }
 
     public void setAdditionalMarksEnabled(boolean value){
@@ -205,6 +211,32 @@ final public class Highlights {
 
     public Mark getMark(int index){
         return this.Highlights.get(index);
+    }
+
+    public Mark getMarkByPos(int pos){
+        for(Mark mark : this.Highlights){
+            if(mark.getPosition() == pos){
+                return mark;
+            }
+        }
+        return null;
+    }
+
+    public void clearAllMarksByPos(int pos){
+        for(Mark mark : this.Highlights){
+            if(mark.getPosition() == pos){
+                mark.setPosition(-1);
+            }
+        }
+    }
+
+    public void clearFirstMarkByPos(int pos){
+        for(Mark mark : this.Highlights){
+            if(mark.getPosition() == pos){
+                mark.setPosition(-1);
+                break;
+            }
+        }
     }
 
     public void setMark(int index, int position, Color color, boolean isAdditional){
