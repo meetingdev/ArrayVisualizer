@@ -85,7 +85,13 @@ final public class Delays {
     }
 
     public void sleep(double millis) {
-        if (!isDelayOverrided) {
+        if (SKIPPED || millis == 0) {
+            try {
+                Thread.sleep(0);
+            } catch (Exception ex) {
+                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!isDelayOverrided) {
             if (millis <= 0) {
                 return;
             }
@@ -103,12 +109,6 @@ final public class Delays {
                 for (int i = 0; i < amt / this.SLEEPRATIO; i++) {
                     Thread.sleep(1);
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (SKIPPED || millis == 0) {
-            try {
-                Thread.sleep(0);
             } catch (Exception ex) {
                 Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
             }
