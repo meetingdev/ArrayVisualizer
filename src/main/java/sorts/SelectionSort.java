@@ -71,6 +71,7 @@ final public class SelectionSort extends Sort {
                 }
             }
             Writes.swap(array, i, lowestindex, 0.02, true, false);
+            Highlights.markArray(i, i, Color.GREEN, true);
         }
     }
 }
