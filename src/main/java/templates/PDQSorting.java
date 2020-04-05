@@ -234,21 +234,21 @@ public abstract class PDQSorting extends Sort {
                 Highlights.clearMark(1);
                 for (int i = 0; i < blockSize;) {
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                 }
                 Highlights.clearMark(2);
             }
@@ -258,21 +258,21 @@ public abstract class PDQSorting extends Sort {
                 Highlights.clearMark(1);
                 for (int i = 0; i < blockSize;) {
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                     rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                    Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                    Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
                 }
                 Highlights.clearMark(2);
             }
@@ -308,7 +308,7 @@ public abstract class PDQSorting extends Sort {
             Highlights.clearMark(1);
             for (int i = 0; i < leftSize;) {
                 leftOffsets[leftNum] = i++; leftNum += Math.abs(this.pdqLessThan(array[it++], pivot) - 1);
-                Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
             }
             Highlights.clearMark(2);
         }
@@ -318,7 +318,7 @@ public abstract class PDQSorting extends Sort {
             Highlights.clearMark(1);
             for (int i = 0; i < rightSize;) {
                 rightOffsets[rightNum] = ++i; rightNum += this.pdqLessThan(array[--it], pivot);
-                Writes.changeTempWrites(1); Highlights.markArray(2, it); Delays.sleep(0.5);
+                Writes.changeTempWrites(1); Highlights.markArray(Highlights.getMaximumLength() + 2, it); Delays.sleep(0.5);
             }
             Highlights.clearMark(2);
         }

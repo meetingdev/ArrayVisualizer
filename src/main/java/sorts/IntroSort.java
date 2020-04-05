@@ -47,7 +47,7 @@ final public class IntroSort extends Sort {
             Writes.swap(arr, right, mid, 1, true, false);
         }
         middle = mid;
-        Highlights.markArray(3, mid);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, mid);
         return arr[mid];
     }
     
@@ -55,7 +55,7 @@ final public class IntroSort extends Sort {
         int i = lo, j = hi;
         while (true) {
             while (Reads.compare(a[i], x) == -1) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.5);
                 i++;
             }
@@ -63,23 +63,23 @@ final public class IntroSort extends Sort {
             j--;
 
             while (Reads.compare(x, a[j]) == -1) {
-                Highlights.markArray(2, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, j);
                 Delays.sleep(0.5);
                 j--;
             }
 
             if(!(i < j)) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.5);
                 return i;
             }
 
             // Follow the pivot and highlight it.
             if(i == middle) {
-                Highlights.markArray(3, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, j);
             }
             if(j == middle) {
-                Highlights.markArray(3, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, i);
             }
 
             Writes.swap(a, i, j, 1, true, false);

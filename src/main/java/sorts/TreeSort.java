@@ -64,7 +64,7 @@ final public class TreeSort extends Sort {
         public Node treeWrite(Node element, int at) {
             Node node = new Node(0);
             
-            if(at < length) Highlights.markArray(1, at - 1);
+            if(at < length) Highlights.markArray(Highlights.getMaximumLength() + 1, at - 1);
             
             Writes.changeTempWrites(1);
             
@@ -126,7 +126,7 @@ final public class TreeSort extends Sort {
         { 
             for(int i = 0; i < length; i++) 
             {
-                Highlights.markArray(2, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i);
                 insert(arr[i]); 
             } 
             Highlights.clearMark(2);

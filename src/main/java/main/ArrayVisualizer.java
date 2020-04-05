@@ -509,7 +509,7 @@ final public class ArrayVisualizer {
         }
         
         for(int i = 0; i < this.currentLen + this.getLogBaseTwoOfLength(); i++) {
-            if(i < this.currentLen) Highlights.markArray(1, i);
+            if(i < this.currentLen) Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             Highlights.incrementFancyFinishPosition();
             
             Delays.sleep(sleepRatio / this.getLogBaseTwoOfLength());

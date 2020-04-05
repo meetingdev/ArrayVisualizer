@@ -126,7 +126,7 @@ public abstract class GrailSorting extends Sort {
                     right = mid;
                 } else left = mid;
             }
-            Highlights.markArray(1, mid);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, mid);
         }
         return right;
     }
@@ -267,8 +267,8 @@ public abstract class GrailSorting extends Sort {
                 this.grailSwap(arr, pos + (dist++), pos + (right++));
             } 
             else this.grailSwap(arr, pos + (dist++), pos + (left++));       
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -285,8 +285,8 @@ public abstract class GrailSorting extends Sort {
                 this.grailSwap(arr, pos + (mergedPos--), pos + (left--));
             } 
             else this.grailSwap(arr, pos + (mergedPos--), pos + (right--));
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -342,8 +342,8 @@ public abstract class GrailSorting extends Sort {
                 this.grailSwap(arr, pos + (dist++), pos + (left++));
             }
             else this.grailSwap(arr, pos + (dist++), pos + (right++));
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -374,8 +374,8 @@ public abstract class GrailSorting extends Sort {
                 Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, false);
             }
             else Writes.write(arr, pos + dist++, arr[pos + right++], 1, true, false);
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         Highlights.clearMark(2);
         Highlights.clearMark(3);
@@ -405,8 +405,8 @@ public abstract class GrailSorting extends Sort {
                 Writes.write(arr, pos + dist++, arr[pos + right++], 1, true, false);
             }
             else Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, false);
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         Highlights.clearMark(2);
         Highlights.clearMark(3);
@@ -629,8 +629,8 @@ public abstract class GrailSorting extends Sort {
             if(Reads.compare(arr[pos + dist - 1], arr[pos + dist]) > 0) {
                 this.grailSwap(arr, pos + (dist - 1), pos + dist);
             }
-            Highlights.markArray(3, pos + dist - 1);
-            Highlights.markArray(4, pos + dist);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + dist - 1);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + dist);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);

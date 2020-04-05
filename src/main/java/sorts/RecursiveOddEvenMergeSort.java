@@ -28,8 +28,8 @@ final public class RecursiveOddEvenMergeSort extends Sort {
     }
     
     private void oddEvenMergeCompare(int[] array, int i, int j) {
-        Highlights.markArray(1, i);
-        Highlights.markArray(2, j);
+        Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, j);
         Delays.sleep(1);
         if (Reads.compare(array[i], array[j]) > 0)
             Writes.swap(array, i, j, 1, true, false);
@@ -46,14 +46,14 @@ final public class RecursiveOddEvenMergeSort extends Sort {
             this.oddEvenMerge(array, lo+r, n, m);    // odd subsequence
             
             for (int i = lo + r; i + r < lo + n; i += m) {
-                Highlights.markArray(1, i);
-                Highlights.markArray(2, i + r);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i + r);
                 this.oddEvenMergeCompare(array, i, i + r);
             }
         }
         else {
-            Highlights.markArray(1, lo + r);
-            Highlights.markArray(2, lo);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, lo + r);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, lo);
             this.oddEvenMergeCompare(array, lo, lo+r);
         }
     }

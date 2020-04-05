@@ -168,7 +168,7 @@ public abstract class HolyGrailSorting extends Sort {
     private void grailInsertSort(int[] arr, int pos, int len) {
         for(int i = 1; i < len; i++) {
             int insertPos = grailBinSearch(arr, pos, pos + i, pos + i, false);
-            Highlights.markArray(3, insertPos);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, insertPos);
             
             if(insertPos < i) {
                 int item = arr[pos + i];
@@ -344,8 +344,8 @@ public abstract class HolyGrailSorting extends Sort {
                 this.grailSwap(arr, pos + (dist++), pos + (right++));
             } 
             else this.grailSwap(arr, pos + (dist++), pos + (left++));       
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -362,8 +362,8 @@ public abstract class HolyGrailSorting extends Sort {
                 this.grailSwap(arr, pos + (mergedPos--), pos + (left--));
             } 
             else this.grailSwap(arr, pos + (mergedPos--), pos + (right--));
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -419,8 +419,8 @@ public abstract class HolyGrailSorting extends Sort {
                 this.grailSwap(arr, pos + (dist++), pos + (left++));
             }
             else this.grailSwap(arr, pos + (dist++), pos + (right++));
-            Highlights.markArray(3, pos + left);
-            Highlights.markArray(4, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + right);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);
@@ -451,8 +451,8 @@ public abstract class HolyGrailSorting extends Sort {
                 Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, false);
             }
             else Writes.write(arr, pos + dist++, arr[pos + right++], 1, true, false);
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         Highlights.clearMark(2);
         Highlights.clearMark(3);
@@ -482,8 +482,8 @@ public abstract class HolyGrailSorting extends Sort {
                 Writes.write(arr, pos + dist++, arr[pos + right++], 1, true, false);
             }
             else Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, false);
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         Highlights.clearMark(2);
         Highlights.clearMark(3);
@@ -773,8 +773,8 @@ public abstract class HolyGrailSorting extends Sort {
             if(Reads.compare(arr[pos + dist - 1], arr[pos + dist]) > 0) {
                 this.grailSwap(arr, pos + (dist - 1), pos + dist);
             }
-            Highlights.markArray(3, pos + dist - 1);
-            Highlights.markArray(4, pos + dist);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + dist - 1);
+            Highlights.markArray(Highlights.getMaximumLength() + 4, pos + dist);
         }
         Highlights.clearMark(3);
         Highlights.clearMark(4);

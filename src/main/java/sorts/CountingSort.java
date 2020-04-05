@@ -59,7 +59,7 @@ final public class CountingSort extends Sort {
         
         for(int i = 0; i < length; i++){
             Writes.write(counts, array[i], counts[array[i]] + 1, 0.5, false, true);
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
         }
         for (int i = 1; i <= max; i++) {
             Writes.write(counts, i, counts[i] + counts[i - 1], 1, true, true);
@@ -75,7 +75,7 @@ final public class CountingSort extends Sort {
             Writes.write(array, i, output[i], 1, false, false);
             
             Writes.changeTempWrites(1);
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
         }
     }
 }

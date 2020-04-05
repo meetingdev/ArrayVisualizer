@@ -54,7 +54,7 @@ final public class WeaveMergeSort extends Sort {
         for(int j = start; j < end; j++){
             pos = j;
             
-            Highlights.markArray(1, j);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, j);
             Highlights.clearMark(2);
             
             while(pos > start && Reads.compare(arr[pos], arr[pos - 1]) < 1) {

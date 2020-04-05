@@ -330,8 +330,8 @@ final public class WikiSorting {
             if (Reads.compare(from[B_index], from[A_index]) >= 0) {
                 Writes.write(into, insert_index, from[A_index], 1, false, tempwrite);
                 
-                if(tempwrite) Highlights.markArray(1, A_index);
-                else Highlights.markArray(1, insert_index);
+                if(tempwrite) Highlights.markArray(Highlights.getMaximumLength() + 1, A_index);
+                else Highlights.markArray(Highlights.getMaximumLength() + 1, insert_index);
                 
                 A_index++;
                 insert_index++;
@@ -343,8 +343,8 @@ final public class WikiSorting {
             } else {
                 Writes.write(into, insert_index, from[B_index], 1, false, tempwrite);
                 
-                if(tempwrite) Highlights.markArray(1, B_index);
-                else Highlights.markArray(1, insert_index);
+                if(tempwrite) Highlights.markArray(Highlights.getMaximumLength() + 1, B_index);
+                else Highlights.markArray(Highlights.getMaximumLength() + 1, insert_index);
                 
                 B_index++;
                 insert_index++;

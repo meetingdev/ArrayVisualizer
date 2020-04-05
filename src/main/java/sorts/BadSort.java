@@ -31,16 +31,16 @@ final public class BadSort extends Sort {
     public void runSort(int[] array, int currentLen, int bucketCount) {
         for (int i = 0; i < currentLen; i++) {
             int shortest = i;
-            Highlights.markArray(3, shortest);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, shortest);
             Delays.sleep(0.05);
             
             for (int j = i; j < currentLen; j++) {
-                Highlights.markArray(1, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, j);
                 Delays.sleep(0.05);
                 
                 boolean isShortest = true;
                 for (int k = j + 1; k < currentLen; k++) {
-                    Highlights.markArray(2, k);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, k);
                     Delays.sleep(0.05);
                     
                     if (Reads.compare(array[j], array[k]) == 1) {

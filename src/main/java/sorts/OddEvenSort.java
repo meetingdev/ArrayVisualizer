@@ -40,7 +40,7 @@ final public class OddEvenSort extends Sort {
                     sorted = false;
                 }
                 
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.025);
             }
     
@@ -50,7 +50,7 @@ final public class OddEvenSort extends Sort {
                     sorted = false;
                 }
                 
-                Highlights.markArray(2, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i);
                 Delays.sleep(0.025);
             }
         }

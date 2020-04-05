@@ -38,8 +38,8 @@ public abstract class CircleSorting extends Sort {
             lo++;
             hi--;
             
-            Highlights.markArray(1, lo);
-            Highlights.markArray(2, hi);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, lo);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, hi);
             Delays.sleep(0.5);
         }
  

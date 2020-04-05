@@ -49,7 +49,7 @@ public abstract class BogoSorting extends Sort {
     protected boolean bogoIsSorted(int[] array, int length){
         for(int i = 0; i < length - 1; i++) {
             if(Reads.compare(array[i], array[i + 1]) == 1) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 return false;
             }
         }
@@ -60,11 +60,11 @@ public abstract class BogoSorting extends Sort {
     protected boolean isMinSorted(int[] array, int length, int offset) {
         Highlights.clearAllMarks();
         
-        Highlights.markArray(2, offset);
-        Highlights.markArray(3, length);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, offset);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, length);
         
         for(int i = offset + 1; i < length; i++) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             Delays.sleep(0.075);
             
             if(Reads.compare(array[offset], array[i]) == 1) {
@@ -77,11 +77,11 @@ public abstract class BogoSorting extends Sort {
     protected boolean isMaxSorted(int[] array, int minIterator, int maxIterator) {
         Highlights.clearAllMarks();
         
-        Highlights.markArray(2, minIterator);
-        Highlights.markArray(3, maxIterator);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, minIterator);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, maxIterator);
         
         for(int i = maxIterator; i >= minIterator; i--) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             Delays.sleep(0.075);
             
             if(Reads.compare(array[maxIterator], array[i]) == -1) {
