@@ -1,10 +1,7 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
 
 import java.awt.*;
 
@@ -79,8 +76,8 @@ final public class CocktailShakerSort extends Sort {
                 
                 Delays.sleep(0.01);
             }
-            Highlights.markArray(i, i, Color.GREEN, true);
-            Highlights.markArray(end + start - i - 1, end + start - i - 1, Color.GREEN, true);
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
+            Highlights.markArray(end + start - i - 1, end + start - i - 1, Color.GREEN, Mark.TYPE_SORTED);
 
             i++;
         }

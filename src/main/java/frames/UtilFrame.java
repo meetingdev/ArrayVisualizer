@@ -4,7 +4,7 @@
  */
 package frames;
 
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Hashtable;
 
 import javax.swing.*;
@@ -98,6 +98,7 @@ final public class UtilFrame extends JFrame {
     private void initComponents() {
 
         this.jLabel1 = new JLabel();
+        this.marksSettingsLbl = new JLabel();
         this.jButton1 = new javax.swing.JButton();
         this.jButton2 = new javax.swing.JButton();
         this.jButton3 = new javax.swing.JButton();
@@ -108,6 +109,7 @@ final public class UtilFrame extends JFrame {
         this.disableMarksCB = new javax.swing.JCheckBox();
         this.delayORCheckBox = new javax.swing.JCheckBox();
         this.additionalMarksCB = new javax.swing.JCheckBox();
+        this.sortedMarksCB = new javax.swing.JCheckBox();
         this.strokeCB = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
@@ -120,6 +122,7 @@ final public class UtilFrame extends JFrame {
         this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
 
         jLabel1.setText("Settings");
+        marksSettingsLbl.setText("Marks Settings:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -221,6 +224,7 @@ final public class UtilFrame extends JFrame {
 
         disableMarksCB.setSelected(false);
         disableMarksCB.setText("Disable Marks");
+        disableMarksCB.setMargin(new Insets(disableMarksCB.getInsets().top, 20, 0, 0));
         disableMarksCB.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,10 +234,21 @@ final public class UtilFrame extends JFrame {
 
         additionalMarksCB.setSelected(true);
         additionalMarksCB.setText("Additional Marks");
+        additionalMarksCB.setMargin(new Insets(0, 20, 0, 0));
         additionalMarksCB.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdditionalMarksCBActionPerformed();
+            }
+        });
+
+        sortedMarksCB.setSelected(true);
+        sortedMarksCB.setText("Sorted Marks");
+        sortedMarksCB.setMargin(new Insets(sortedMarksCB.getInsets().top, 20, 0, 0));
+        sortedMarksCB.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortedMarksCBActionPerformed();
             }
         });
 
@@ -315,31 +330,35 @@ final public class UtilFrame extends JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, true)
                                         .addComponent(this.jLabel1)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, true)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, true)
                                                 .addComponent(this.jCheckBox1)
                                                 .addComponent(this.jCheckBox2)
                                                 .addComponent(this.jCheckBox3)
-                                                .addComponent(this.additionalMarksCB)
-                                                .addComponent(this.disableMarksCB)
-                                                .addComponent(this.strokeCB)
-                                                .addComponent(this.jCheckBox4)
-                                                .addComponent(this.jCheckBox6)
-                                                .addComponent(this.jCheckBox7)
-                                                .addComponent(this.jCheckBox8)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, true)
-                                                        .addComponent(this.jCheckBox5)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                                .addComponent(this.jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(this.jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(this.jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(this.jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(this.delayORCheckBox).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                                                .addComponent(this.jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(this.FPSBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(this.jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                                                .addGap(0, 10, Short.MAX_VALUE))
-                                );
+                                                .addComponent(this.marksSettingsLbl)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, true))
+                                                    .addComponent(this.additionalMarksCB)
+                                                    .addComponent(this.sortedMarksCB)
+                                                    .addComponent(this.disableMarksCB)
+                                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING))
+                                                        .addComponent(this.strokeCB)
+                                                        .addComponent(this.jCheckBox4)
+                                                        .addComponent(this.jCheckBox6)
+                                                        .addComponent(this.jCheckBox7)
+                                                        .addComponent(this.jCheckBox8)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, true)
+                                                                .addComponent(this.jCheckBox5)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                                        .addComponent(this.jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(this.jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(this.jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(this.jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(this.delayORCheckBox).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                                                        .addComponent(this.jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                        .addComponent(this.FPSBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                        .addComponent(this.jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                                        .addGap(0, 10, Short.MAX_VALUE))
+                                        );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, true)
                         .addGroup(layout.createSequentialGroup()
@@ -352,7 +371,11 @@ final public class UtilFrame extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jCheckBox8)
                                 .addComponent(this.strokeCB)
+                                .addGap(7, 7, 7)
+                                .addComponent(this.marksSettingsLbl)
+                                .addGap(5, 5, 5)
                                 .addComponent(this.additionalMarksCB)
+                                .addComponent(this.sortedMarksCB)
                                 .addComponent(this.disableMarksCB)
                                 .addGap(7, 7, 7)
                                 .addComponent(this.jButton3)
@@ -470,6 +493,11 @@ final public class UtilFrame extends JFrame {
         ArrayVisualizer.Renderer.Bars.setStrokeEnabled(strokeCB.isSelected());
     }
 
+    public void sortedMarksCBActionPerformed(){
+        Highlights.setSortedMarksEnabled(sortedMarksCB.isSelected());
+        Highlights.clearAllMarks();
+    }
+
     public void AdditionalMarksCBActionPerformed(){
         Highlights.setAdditionalMarksEnabled(additionalMarksCB.isSelected());
         Highlights.clearAllMarks();
@@ -561,6 +589,7 @@ final public class UtilFrame extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel jLabel1;
+    private JLabel marksSettingsLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -572,6 +601,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JCheckBox disableMarksCB;
     private javax.swing.JCheckBox strokeCB;
     private javax.swing.JCheckBox additionalMarksCB;
+    private javax.swing.JCheckBox sortedMarksCB;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox delayORCheckBox;

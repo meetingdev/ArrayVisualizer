@@ -1,10 +1,7 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
 
 import java.awt.*;
 /*
@@ -42,8 +39,8 @@ final public class SlowSort extends Sort {
 	    this.slowSort(A, m + 1, j);
         Delays.sleep(0.025);
         
-        Highlights.markArray(j, j, Color.GREEN, true);
-        Highlights.markArray(j-1, j-1, Color.GREEN, true);
+        Highlights.markArray(j, j, Color.GREEN, Mark.TYPE_SORTED);
+        Highlights.markArray(j-1, j-1, Color.GREEN, Mark.TYPE_SORTED);
 
 	    if (Reads.compare(A[m], A[j]) == 1) {
 	        Writes.swap(A, m, j, 1, true, false);

@@ -1,10 +1,7 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
 
 import java.awt.*;
 
@@ -79,8 +76,8 @@ final public class DoubleSelectionSort extends Sort {
             
             Writes.swap(array, left, smallest, 0.02, true, false);
             Writes.swap(array, right, biggest, 0.02, true, false);
-            Highlights.markArray(left, left, Color.GREEN, true);
-            Highlights.markArray(right, right, Color.GREEN, true);
+            Highlights.markArray(left, left, Color.GREEN, Mark.TYPE_SORTED);
+            Highlights.markArray(right, right, Color.GREEN, Mark.TYPE_SORTED);
 
             left++;
             right--;

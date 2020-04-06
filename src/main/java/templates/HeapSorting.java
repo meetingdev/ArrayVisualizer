@@ -61,14 +61,15 @@ public abstract class HeapSorting extends Sort {
         while (k > 0) {
             k /= 2;
             for (int j = k;j <= k * 2; ++j){
-                Highlights.markArray(j, j, color, true);
+                Highlights.markArray(j, j, color, Mark.TYPE_ADDITIONAL);
             }
             updateColor();
         }
         heapify(arr, start, length, sleep, isMax);
 
         for (int i = length - start; i > 1; i--) {
-            Highlights.markArray(i -1, i - 1, Color.GREEN, true);
+            Highlights.clearMark(i-1);
+            Highlights.markArray(i - 1, i - 1, Color.GREEN, Mark.TYPE_SORTED);
             Writes.swap(arr, start, start + i - 1, sleep, true, false);
             siftDown(arr, 1, i - 1, start, sleep, isMax);
         }

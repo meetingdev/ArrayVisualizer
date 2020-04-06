@@ -6,26 +6,26 @@ public class Mark {
     /*static int RED = 0;
     static int GREEN = 1;
     static int BLUE = 2;*/
-    public static int TYPE_UNDEFINED = -1;
-    public static int TYPE_WHITE = 0;
-    public static int TYPE_MARK = 1;
-    public static int TYPE_END = 2;
+    public static int TYPE_DEFAULT = 0;
+    public static int TYPE_ADDITIONAL = 1;
+    public static int TYPE_SORTED = 2;
 
-    int position;
-    Color color;
-    boolean isAdditional = false;
+    private int position;
+    private int type;
+    private Color color;
+    //boolean isAdditional = false;
     //public Mark(int position, Color color, int type){
 
 
-    public Mark(int position, Color color, boolean isAdditional){
+    public Mark(int position, Color color, int type){
         this.position = position;
         this.color = color;
-        this.isAdditional = isAdditional;
+        this.type = type;
     }
     public Mark(int position){
         this.position = position;
         this.color = Color.RED;
-        this.isAdditional = false;
+        this.type = 0;
     }
     public int getPosition(){
         return this.position;
@@ -33,8 +33,14 @@ public class Mark {
     public Color getColor(){
         return this.color;
     }
-    public boolean isAdditional(){
+    /*public boolean isAdditional(){
         return this.isAdditional;
+    }*/
+    public boolean isDefault(){
+        return this.type == Mark.TYPE_DEFAULT;
+    }
+    public int getType(){
+        return this.type;
     }
     public void setPosition(int pos){
         this.position = pos;

@@ -64,7 +64,7 @@ final public class SmartBubbleSort extends Sort {
                 Highlights.markArray(Highlights.getMaximumLength()+2, j + 1);
                 Delays.sleep(0.025);
             }
-            Highlights.markArray(i, i, Color.GREEN, true);
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
         }
     }
 }
