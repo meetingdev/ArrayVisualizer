@@ -219,6 +219,14 @@ final public class Highlights {
         this.markCount = 0;
     }
 
+    public void clearAllMarks(int type){
+        for(int i = 0; i < Highlights.size(); ++i){
+            if(getMark(i).getType() == type){
+                clearMark(i);
+            }
+        }
+    }
+
     public void clearMarks(int start, int end, int type){
         for(int i = start; i<=end;++i){
             if (this.getMark(i).getType() == type)
