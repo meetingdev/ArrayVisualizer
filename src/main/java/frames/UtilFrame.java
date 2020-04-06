@@ -17,9 +17,7 @@ import prompts.ShufflePrompt;
 import prompts.SortPrompt;
 import prompts.ViewPrompt;
 import templates.Frame;
-import utils.Delays;
-import utils.Highlights;
-import utils.Sounds;
+import utils.*;
 import utils.Timer;
  
 /*
@@ -495,12 +493,12 @@ final public class UtilFrame extends JFrame {
 
     public void sortedMarksCBActionPerformed(){
         Highlights.setSortedMarksEnabled(sortedMarksCB.isSelected());
-        Highlights.clearAllMarks();
+        Highlights.clearAllMarks(Mark.TYPE_SORTED);
     }
 
     public void AdditionalMarksCBActionPerformed(){
         Highlights.setAdditionalMarksEnabled(additionalMarksCB.isSelected());
-        Highlights.clearAllMarks();
+        Highlights.clearAllMarks(Mark.TYPE_ADDITIONAL);
     }
 
     public void setFPSBtnEnabled(boolean enabled){
@@ -523,6 +521,7 @@ final public class UtilFrame extends JFrame {
         if(delayORCheckBox.isSelected()) {
             Delays.setOverride(true);
             jButton3.setText("Change Delay");
+            showChangeDelay();
             //jButton3.addActionListener(evt -> showChangeDelay());
         }else{
             Delays.setOverride(false);
