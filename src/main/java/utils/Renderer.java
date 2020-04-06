@@ -250,13 +250,14 @@ final public class Renderer {
     @SuppressWarnings("fallthrough")
     //The longer the array length, the more bars marked. Makes the visual easier to see when bars are thinner.
     public void colorMarkedBars(int logOfLen, int index, Highlights Highlights, Graphics2D mainRender, boolean colorEnabled, boolean rainbowEnabled, boolean analysis) {
-        if(Highlights.getMark(index).getType() == Mark.TYPE_DEFAULT || Highlights.getAdditionalMarksEnabled()){
+        //if(Highlights.getMark(index).getType() == Mark.TYPE_DEFAULT || Highlights.getAdditionalMarksEnabled()){
         switch(logOfLen) {
         case 12: if(Highlights.containsPosition(index - 3))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
         case 11: if(Highlights.containsPosition(index - 2))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
         case 10: if(Highlights.containsPosition(index - 1))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
         default: if(Highlights.containsPosition(index))      markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
-        }}
+        }
+    //}
     }
     
     @SuppressWarnings("fallthrough")
