@@ -61,6 +61,7 @@ final public class Highlights {
     private boolean FANCYFINISH;
     private boolean marksEnabled;
     private boolean AdditionalMarksEnabled;
+    private boolean sortedMarksEnabled;
     private volatile boolean fancyFinish;
     private volatile int trackFinish;
     private volatile int maximumLength;
@@ -71,6 +72,7 @@ final public class Highlights {
         this.FANCYFINISH = true;
         this.marksEnabled = true;
         this.AdditionalMarksEnabled = true;
+        this.sortedMarksEnabled = true;
         this.maxIndexMarked = 0;
         this.markCount = 0;
         this.maximumLength = maximumLength;
@@ -100,6 +102,14 @@ final public class Highlights {
 
     public boolean getAdditionalMarksEnabled(){
         return this.AdditionalMarksEnabled;
+    }
+
+    public void setSortedMarksEnabled(boolean value){
+        this.sortedMarksEnabled = value;
+    }
+
+    public boolean getsortedMarksEnabled(){
+        return this.sortedMarksEnabled;
     }
 
     public boolean fancyFinishEnabled() {
@@ -150,7 +160,7 @@ final public class Highlights {
 
         return false;
     }
-    public void markArray(int marker, int markPosition, Color color, boolean isAdditional) {
+    public void markArray(int marker, int markPosition, Color color, int type) {
         if(this.marksEnabled){
             try {
                 if(markPosition < 0) {
@@ -163,11 +173,11 @@ final public class Highlights {
 
                     //Highlights.get(marker).setPosition(markPosition);
                     //Highlights.set(marker, new Mark(markPosition, Highlights.get(marker).getColor()));
-                    if(AdditionalMarksEnabled&&isAdditional){
-                        this.setMark(marker, markPosition, color, true);
+                    if((AdditionalMarksEnabled && type == Mark.TYPE_ADDITIONAL) || (sortedMarksEnabled && type == Mark.TYPE_SORTED)){
+                        this.setMark(marker, markPosition, color, type);
                     }
-                    else if(!isAdditional){
-                        this.setMark(marker, markPosition, color, false);
+                    else if(type == Mark.TYPE_DEFAULT){
+                        this.setMark(marker, markPosition, Color.RED, Mark.TYPE_DEFAULT);
                     }
                     this.markCount++;
 
@@ -182,7 +192,7 @@ final public class Highlights {
         }
     }
     public void markArray(int marker, int markPosition){
-        this.markArray(marker, markPosition, Color.RED, false);
+        this.markArray(marker, markPosition, Color.RED, Mark.TYPE_DEFAULT);
     }
     public void clearMark(int marker) {
         //Highlights[marker] = -1; // -1 is used as the magic number to unmark a position in the main array
@@ -209,17 +219,19 @@ final public class Highlights {
         this.markCount = 0;
     }
 
-    public void clearMarks(int start, int end){
+    public void clearMarks(int start, int end, int type){
         for(int i = start; i<=end;++i){
+            if (this.getMark(i).getType() == type)
             this.clearMark(i);
         }
     }
 
+    public void clearMarks(int start, int end){
+        clearMarks(start, end, Mark.TYPE_DEFAULT);
+    }
+
     public void clearAdditionalMarks(int start, int end){
-        for(int i = start; i<=end;++i){
-            if(this.getMark(i).isAdditional())
-            this.clearMark(i);
-        }
+        clearMarks(start, end, Mark.TYPE_ADDITIONAL);
     }
 
     public Mark getMark(int index){
@@ -252,15 +264,15 @@ final public class Highlights {
         }
     }
 
-    public void setMark(int index, int position, Color color, boolean isAdditional){
-        this.Highlights.set(index, new Mark(position, color, isAdditional));
+    public void setMark(int index, int position, Color color, int type){
+        this.Highlights.set(index, new Mark(position, color, type));
     }
 
     public void setMarkPosition(int index, int position){
-        this.setMark(index, position, this.getMark(index).getColor(), this.getMark(index).isAdditional);
+        this.setMark(index, position, this.getMark(index).getColor(), this.getMark(index).getType());
     }
 
     public void setMarkColor(int index, Color color){
-        this.setMark(index, this.getMark(index).getPosition(), color, this.getMark(index).isAdditional);
+        this.setMark(index, this.getMark(index).getPosition(), color, this.getMark(index).getType());
     }
 }

@@ -1,10 +1,7 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
 
 import java.awt.*;
 
@@ -71,7 +68,7 @@ final public class SelectionSort extends Sort {
                 }
             }
             Writes.swap(array, i, lowestindex, 0.02, true, false);
-            Highlights.markArray(i, i, Color.GREEN, true);
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
         }
     }
 }
