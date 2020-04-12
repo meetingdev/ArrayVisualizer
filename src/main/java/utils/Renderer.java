@@ -258,10 +258,15 @@ final public class Renderer {
         else line.setColor(Color.WHITE);
         line.setStroke(new BasicStroke((float) (3f * (width / 1280f))));
     }
-    
-    public void setRectColor(Graphics2D rect, boolean color, boolean analysis) {
-        if(color) rect.setColor(Color.WHITE);
-        else if(analysis) rect.setColor(Color.BLUE);
+    //TODO: Add Extended Marks Support
+    public void setRectColor(Graphics2D rect, int index, boolean colorEnabled, boolean analysis) {
+        if(colorEnabled){
+            if(Highlights.getMark(index).isDefault()) {
+                rect.setColor(Color.WHITE);
+            }else{
+                rect.setColor(Highlights.getMark(index).getColor());
+            }
+        }else if(analysis) rect.setColor(Color.BLUE);
         else rect.setColor(Color.RED);
     }
     

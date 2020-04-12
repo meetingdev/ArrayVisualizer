@@ -88,13 +88,13 @@ final public class Pixels {
                 int y = 0;
                 int width = (int) (Renderer.getXScale() * (i + 1)) - Renderer.getOffset();
 
-                if(Highlights.containsPosition(i) && ArrayVisualizer.getCurrentLength() != 2) {
-                    Renderer.setRectColor(extraRender, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
+                if(Highlights.containsPosition(i) && ArrayVisualizer.getCurrentLength() != 2 && Highlights.getMark(i).isDefault()) {
+                    Renderer.setRectColor(extraRender, i, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
                     drawRect = true;
                 }
                 else drawRect = false;
 
-                if(width > 0) {
+                if(width > 0 || !ArrayVisualizer.getIsDotsLimited()) {
                     y = (int) ((ArrayVisualizer.windowHeight() - 20) - (array[i] * Renderer.getYScale()));
                     mainRender.fillRect(Renderer.getOffset() + 20, y, Renderer.getDotDimensions(), Renderer.getDotDimensions());
                     
