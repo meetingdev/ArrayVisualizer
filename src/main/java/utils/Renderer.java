@@ -209,12 +209,29 @@ final public class Renderer {
     }
     
     public void markBar(Graphics2D bar,int index, boolean colorEnabled, boolean rainbow, boolean analysis, Color color) {
-        if((colorEnabled || rainbow)&&(Highlights.getMark(index).getType()!=Mark.TYPE_SORTED)) {
+       /* if((colorEnabled || rainbow)&&(Highlights.getMark(index).getType()!=Mark.TYPE_SORTED)) {
             if(analysis) bar.setColor(Color.WHITE);
             else         bar.setColor(Color.BLACK);
         }
         else if(analysis)    bar.setColor(Color.BLUE);
-        else                 bar.setColor(color);
+        else                 bar.setColor(color);*/
+
+
+        if(colorEnabled || rainbow){
+            if(analysis){
+                bar.setColor(Color.WHITE);
+            }else if(Highlights.getMark(index).getType()==Mark.TYPE_DEFAULT){
+                bar.setColor(Color.BLACK);
+            }else{
+                bar.setColor(color);
+            }
+        }else{
+            if(analysis){
+                bar.setColor(Color.BLUE);
+            }else{
+                bar.setColor(color);
+            }
+        }
     }
     public void markBar(Graphics2D bar, int index,boolean color, boolean rainbow, boolean analysis){
         markBar(bar, index, color, rainbow, analysis, Color.RED);
