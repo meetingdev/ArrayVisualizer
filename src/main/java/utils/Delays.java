@@ -115,6 +115,7 @@ final public class Delays {
         } else {
             try {
                 Thread.sleep((long) delay);
+                SystemUtils.sleepInNanos((int) ((delay % 1) * 1000000));
             } catch (Exception ex) {
                 Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
             }
