@@ -74,9 +74,9 @@ final public class HolyGrailSort extends HolyGrailSorting {
     public HolyGrailSort(Delays delayOps, Highlights markOps, Reads readOps, Writes writeOps) {
         super(delayOps, markOps, readOps, writeOps);
         
-        this.setSortPromptID(""); // Sort disabled
+        this.setSortPromptID("Holy Grail"); // Sort disabled
         this.setRunAllID("Holy Grail Sort (Block Merge Sort)");
-        this.setReportSortID("Holygrailsort");
+        this.setReportSortID("Holy Grail Sort");
         this.setCategory("Hybrid Sorts");
         this.isComparisonBased(true);
         this.isBucketSort(false);
