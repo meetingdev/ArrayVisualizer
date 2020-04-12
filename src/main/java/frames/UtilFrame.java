@@ -108,6 +108,7 @@ final public class UtilFrame extends JFrame {
         this.delayORCheckBox = new javax.swing.JCheckBox();
         this.additionalMarksCB = new javax.swing.JCheckBox();
         this.sortedMarksCB = new javax.swing.JCheckBox();
+        this.dotsLimitCB = new javax.swing.JCheckBox();
         this.strokeCB = new javax.swing.JCheckBox();
         this.jCheckBox4 = new javax.swing.JCheckBox();
         this.jButton5 = new javax.swing.JButton();
@@ -117,12 +118,12 @@ final public class UtilFrame extends JFrame {
         this.jCheckBox6 = new javax.swing.JCheckBox();
         this.jCheckBox7 = new javax.swing.JCheckBox();
         this.jCheckBox8 = new javax.swing.JCheckBox();
-        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
+        //this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
 
         jLabel1.setText("Settings");
         marksSettingsLbl.setText("Marks Settings:");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        /*setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         Hashtable<Integer, JLabel> labels = new Hashtable<>();
         labels.put(1, new JLabel("2"));
@@ -137,6 +138,7 @@ final public class UtilFrame extends JFrame {
         labels.put(10, new JLabel("1024"));
         labels.put(11, new JLabel("2048"));
         labels.put(12, new JLabel("4096"));
+        labels.put(13, new JLabel("8192"));
 
         jSlider.setMajorTickSpacing(1);
         jSlider.setLabelTable(labels);
@@ -148,7 +150,7 @@ final public class UtilFrame extends JFrame {
             public void stateChanged(ChangeEvent event) {
                 ArrayVisualizer.setCurrentLength((int) Math.pow(2, jSlider.getValue()));
             }
-        });
+        });*/
 
         jButton1ResetText();
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -259,6 +261,15 @@ final public class UtilFrame extends JFrame {
             }
         });
 
+        dotsLimitCB.setSelected(true);
+        dotsLimitCB.setText("Dots Display Limit");
+        dotsLimitCB.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dotsLimitCBActionPerformed();
+            }
+        });
+
         jCheckBox4.setSelected(true);
         jCheckBox4.setText("Calc Real Time");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -331,6 +342,7 @@ final public class UtilFrame extends JFrame {
                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, true)
                                                 .addComponent(this.jCheckBox1)
                                                 .addComponent(this.jCheckBox2)
+                                                .addComponent(this.dotsLimitCB)
                                                 .addComponent(this.jCheckBox3)
                                                 .addComponent(this.marksSettingsLbl)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, true))
@@ -366,6 +378,7 @@ final public class UtilFrame extends JFrame {
                                 .addComponent(this.jButton2)
                                 .addGap(5, 5, 5)
                                 .addComponent(this.jCheckBox2)
+                                .addComponent(this.dotsLimitCB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(this.jCheckBox8)
                                 .addComponent(this.strokeCB)
@@ -443,6 +456,10 @@ final public class UtilFrame extends JFrame {
 
     public void jButton2ResetText() {
         jButton2.setText("Visual Style");
+    }
+
+    public void dotsLimitCBActionPerformed(){
+        ArrayVisualizer.setIsDotsLimited(dotsLimitCB.isSelected());
     }
 
     private void jButton3ActionPerformed() {//GEN-FIRST:event_jButton3ActionPerformed
@@ -601,6 +618,7 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JCheckBox strokeCB;
     private javax.swing.JCheckBox additionalMarksCB;
     private javax.swing.JCheckBox sortedMarksCB;
+    private javax.swing.JCheckBox dotsLimitCB;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox delayORCheckBox;
@@ -609,6 +627,6 @@ final public class UtilFrame extends JFrame {
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JSlider jSlider;
+  //  private javax.swing.JSlider jSlider;
     // End of variables declaration//GEN-END:variables
 }

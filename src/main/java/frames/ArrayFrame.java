@@ -92,7 +92,6 @@ final public class ArrayFrame extends JFrame {
     private void initComponents() {
 
         this.jLabel1 = new JLabel();
-        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 12, 6);
 
         jLabel1.setText("Array Size");
 
@@ -111,6 +110,10 @@ final public class ArrayFrame extends JFrame {
         labels.put(10, new JLabel("1024"));
         labels.put(11, new JLabel("2048"));
         labels.put(12, new JLabel("4096"));
+        labels.put(13, new JLabel("8192"));
+        labels.put(14, new JLabel("16384"));
+
+        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, labels.size(), 6);
 
         jSlider.setMajorTickSpacing(1);
         jSlider.setLabelTable(labels);

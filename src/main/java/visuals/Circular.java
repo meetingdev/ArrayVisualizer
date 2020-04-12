@@ -155,7 +155,7 @@ final public class Circular {
                     }
                     else {
                         if(Highlights.containsPosition(i)) {
-                            Renderer.setRectColor(extraRender, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
+                            Renderer.setRectColor(extraRender, i, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
                             drawRect = true;
                         }
                         else drawRect = false;
@@ -216,7 +216,7 @@ final public class Circular {
                     }
                     else {
                         if(Highlights.containsPosition(i)) {
-                            Renderer.setRectColor(extraRender, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
+                            Renderer.setRectColor(extraRender, i,ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
                             drawRect = true;
                         }
                         else drawRect = false;

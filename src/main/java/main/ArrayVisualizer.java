@@ -133,7 +133,7 @@ final public class ArrayVisualizer {
     final boolean OBS = false; // Change to true if you want 1080p for recording with OBS
     
     final private int MIN_ARRAY_VAL = 2;
-    final private int MAX_ARRAY_VAL = 4096;
+    final private int MAX_ARRAY_VAL = 16384;
 
     final int[] array = new int[this.MAX_ARRAY_VAL];
     
@@ -193,6 +193,8 @@ final public class ArrayVisualizer {
     private Timer Timer;
     private VisualStyles VisualStyles;
     private Writes Writes;
+
+    private Boolean isDotsLimited = true;
 
     public ArrayVisualizer() {
         this.currentLen = 64;
@@ -291,6 +293,14 @@ final public class ArrayVisualizer {
 
     public int getFPS(){
         return (int) Math.round(1000/this.threadDelay);
+    }
+
+    public void setIsDotsLimited(boolean value){
+        this.isDotsLimited = value;
+    }
+
+    public Boolean getIsDotsLimited(){
+        return this.isDotsLimited;
     }
 
     public ArrayManager getArrayManager() {
