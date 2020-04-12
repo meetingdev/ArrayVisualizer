@@ -229,8 +229,9 @@ final public class Highlights {
 
     public void clearMarks(int start, int end, int type){
         for(int i = start; i<=end;++i){
-            if (this.getMark(i).getType() == type)
-            this.clearMark(i);
+            if (this.getMark(i).getType() == type) {
+                this.clearMark(i);
+            }
         }
     }
 
