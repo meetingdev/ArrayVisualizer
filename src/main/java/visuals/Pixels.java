@@ -88,7 +88,7 @@ final public class Pixels {
                 int y = 0;
                 int width = (int) (Renderer.getXScale() * (i + 1)) - Renderer.getOffset();
 
-                if(Highlights.containsPosition(i) && ArrayVisualizer.getCurrentLength() != 2 && Highlights.getMark(i).isDefault()) {
+                if(Highlights.containsPosition(i) && ArrayVisualizer.getCurrentLength() != 2 && Highlights.getMark(i).isDefault() && Highlights.getMarksEnabled()) {
                     Renderer.setRectColor(extraRender, i, ArrayVisualizer.colorEnabled(), ArrayVisualizer.analysisEnabled());
                     drawRect = true;
                 }

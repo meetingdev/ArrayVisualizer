@@ -113,7 +113,7 @@ final public class Sounds {
                     //for(int i : Highlights.highlightList()) {
                     for(Mark i : Highlights.highlightList()) {
                         try {
-                            if(i.getPosition() != -1 && i.isDefault()) {
+                            if(i.getPosition() != -1 && (i.isDefault())) {
                                 int currentLen = ArrayVisualizer.getCurrentLength();
 
                                 //PITCH

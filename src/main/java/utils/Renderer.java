@@ -216,20 +216,21 @@ final public class Renderer {
         else if(analysis)    bar.setColor(Color.BLUE);
         else                 bar.setColor(color);*/
 
-
-        if(colorEnabled || rainbow){
-            if(analysis){
-                bar.setColor(Color.WHITE);
-            }else if(Highlights.getMark(index).getType()==Mark.TYPE_DEFAULT){
-                bar.setColor(Color.BLACK);
-            }else{
-                bar.setColor(color);
-            }
-        }else{
-            if(analysis){
-                bar.setColor(Color.BLUE);
-            }else{
-                bar.setColor(color);
+        if(Highlights.getMarksEnabled()) {
+            if (colorEnabled || rainbow) {
+                if (analysis) {
+                    bar.setColor(Color.WHITE);
+                } else if (Highlights.getMark(index).getType() == Mark.TYPE_DEFAULT) {
+                    bar.setColor(Color.BLACK);
+                } else {
+                    bar.setColor(color);
+                }
+            } else {
+                if (analysis) {
+                    bar.setColor(Color.BLUE);
+                } else {
+                    bar.setColor(color);
+                }
             }
         }
     }
@@ -260,14 +261,17 @@ final public class Renderer {
     }
     //TODO: Add Extended Marks Support
     public void setRectColor(Graphics2D rect, int index, boolean colorEnabled, boolean analysis) {
-        if(colorEnabled){
-            if(Highlights.getMark(index).isDefault()) {
-                rect.setColor(Color.WHITE);
-            }else{
-                rect.setColor(Highlights.getMark(index).getColor());
-            }
-        }else if(analysis) rect.setColor(Color.BLUE);
-        else rect.setColor(Color.RED);
+        if (Highlights.getMarksEnabled()) {
+
+            if (colorEnabled) {
+                if (Highlights.getMark(index).isDefault()) {
+                    rect.setColor(Color.WHITE);
+                } else {
+                    rect.setColor(Highlights.getMark(index).getColor());
+                }
+            } else if (analysis) rect.setColor(Color.BLUE);
+            else rect.setColor(Color.RED);
+        }
     }
     
     @SuppressWarnings("fallthrough")

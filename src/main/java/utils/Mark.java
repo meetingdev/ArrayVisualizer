@@ -6,6 +6,7 @@ public class Mark {
     /*static int RED = 0;
     static int GREEN = 1;
     static int BLUE = 2;*/
+    public static int TYPE_DISABLED_MARK = -1;
     public static int TYPE_DEFAULT = 0;
     public static int TYPE_ADDITIONAL = 1;
     public static int TYPE_SORTED = 2;
