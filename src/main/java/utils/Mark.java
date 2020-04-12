@@ -9,6 +9,7 @@ public class Mark {
     public static int TYPE_DEFAULT = 0;
     public static int TYPE_ADDITIONAL = 1;
     public static int TYPE_SORTED = 2;
+    public static int TYPE_ANALYSIS = 3;
 
     private int position;
     private int type;
@@ -25,7 +26,7 @@ public class Mark {
     public Mark(int position){
         this.position = position;
         this.color = Color.RED;
-        this.type = 0;
+        this.type = Mark.TYPE_DEFAULT;
     }
     public int getPosition(){
         return this.position;

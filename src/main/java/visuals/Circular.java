@@ -240,7 +240,7 @@ final public class Circular {
                 }
                 else {
                     if(Highlights.containsPosition(i)) {
-                        Renderer.markBar(mainRender, ArrayVisualizer.colorEnabled(), ArrayVisualizer.rainbowEnabled(), ArrayVisualizer.analysisEnabled());
+                        Renderer.markBar(mainRender,i, ArrayVisualizer.colorEnabled(), ArrayVisualizer.rainbowEnabled(), ArrayVisualizer.analysisEnabled());
                     }
 
                     Polygon p = new Polygon();

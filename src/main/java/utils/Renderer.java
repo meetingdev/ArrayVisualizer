@@ -60,6 +60,7 @@ final class WindowState {
 
 final public class Renderer {
     public Bars Bars;
+    private Highlights Highlights;
     private Circular Circular;
     private Hoops Hoops;
     private Mesh Mesh;
@@ -131,7 +132,7 @@ final public class Renderer {
         this.Hoops = new Hoops();
         this.Mesh = new Mesh();
         this.Pixels = new Pixels();
-        
+        this.Highlights = ArrayVisualizer.getHighlights();
         this.frames = 0;
         this.updateGraphics(ArrayVisualizer);
         ArrayVisualizer.updateFontSize();
@@ -207,16 +208,16 @@ final public class Renderer {
         return Color.getHSBColor(((float) i / length), 1.0F, 0.8F);
     }
     
-    public void markBar(Graphics2D bar, boolean colorEnabled, boolean rainbow, boolean analysis, Color color) {
-        if(colorEnabled || rainbow) {
+    public void markBar(Graphics2D bar,int index, boolean colorEnabled, boolean rainbow, boolean analysis, Color color) {
+        if((colorEnabled || rainbow)&&(Highlights.getMark(index).getType()!=Mark.TYPE_SORTED)) {
             if(analysis) bar.setColor(Color.WHITE);
             else         bar.setColor(Color.BLACK);
         }
         else if(analysis)    bar.setColor(Color.BLUE);
         else                 bar.setColor(color);
     }
-    public void markBar(Graphics2D bar, boolean color, boolean rainbow, boolean analysis){
-        markBar(bar, color, rainbow, analysis, Color.RED);
+    public void markBar(Graphics2D bar, int index,boolean color, boolean rainbow, boolean analysis){
+        markBar(bar, index, color, rainbow, analysis, Color.RED);
     }
     private void markBarFancy(Graphics2D bar, boolean color, boolean rainbow) {
         if(!color && !rainbow) bar.setColor(Color.RED);
@@ -252,10 +253,10 @@ final public class Renderer {
     public void colorMarkedBars(int logOfLen, int index, Highlights Highlights, Graphics2D mainRender, boolean colorEnabled, boolean rainbowEnabled, boolean analysis) {
         //if(Highlights.getMark(index).getType() == Mark.TYPE_DEFAULT || Highlights.getAdditionalMarksEnabled()){
         switch(logOfLen) {
-        case 12: if(Highlights.containsPosition(index - 3))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
-        case 11: if(Highlights.containsPosition(index - 2))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
-        case 10: if(Highlights.containsPosition(index - 1))  markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
-        default: if(Highlights.containsPosition(index))      markBar(mainRender, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        case 12: if(Highlights.containsPosition(index - 3))  markBar(mainRender, index,colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        case 11: if(Highlights.containsPosition(index - 2))  markBar(mainRender, index, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        case 10: if(Highlights.containsPosition(index - 1))  markBar(mainRender, index, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
+        default: if(Highlights.containsPosition(index))      markBar(mainRender, index, colorEnabled, rainbowEnabled, analysis, Highlights.getMark(index).getColor());
         }
     //}
     }
