@@ -56,7 +56,7 @@ final public class Delays {
         return isDelayOverrided;
     }
 
-    public void setOverride(boolean value) {
+    public void setIsOverride(boolean value) {
         this.isDelayOverrided = value;
     }
 

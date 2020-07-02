@@ -33,32 +33,52 @@ public enum Shuffles {
         @Override
         public void shuffleArray(int[] array, ArrayVisualizer ArrayVisualizer, Delays Delays, Highlights Highlights, Writes Writes) {
             int currentLen = ArrayVisualizer.getCurrentLength();
-            
+
+            double curDelay = Delays.getCurrentDelay();
+            boolean isOverrided = Delays.isDelayOverrided();
+            Delays.setIsOverride(false);
+
             for(int i = 0; i < currentLen; i++){
                 Writes.swap(array, i, (int)(Math.random()*currentLen), 0, true, false);
                 
                 if(ArrayVisualizer.shuffleEnabled()) Delays.sleep(1);
             }
+
+            Delays.setIsOverride(isOverrided);
+            Delays.setCurrentDelay(curDelay);
+
         }
     },
     REVERSE {
         @Override
         public void shuffleArray(int[] array, ArrayVisualizer ArrayVisualizer, Delays Delays, Highlights Highlights, Writes Writes) {
             int currentLen = ArrayVisualizer.getCurrentLength();
-            
+
+            double curDelay = Delays.getCurrentDelay();
+            boolean isOverrided = Delays.isDelayOverrided();
+            Delays.setIsOverride(false);
+
             for (int left = 0, right = currentLen - 1; left < right; left++, right--) {
                 // swap the values at the left and right indices
                 Writes.swap(array, left, right, 0, true, false);
                 
                 if(ArrayVisualizer.shuffleEnabled()) Delays.sleep(1);
             }
+
+            Delays.setIsOverride(isOverrided);
+            Delays.setCurrentDelay(curDelay);
+
         }
     },
     SIMILAR {
         @Override
         public void shuffleArray(int[] array, ArrayVisualizer ArrayVisualizer, Delays Delays, Highlights Highlights, Writes Writes) {
             int currentLen = ArrayVisualizer.getCurrentLength();
-            
+
+            double curDelay = Delays.getCurrentDelay();
+            boolean isOverrided = Delays.isDelayOverrided();
+            Delays.setIsOverride(false);
+
             for(int i = 0; i < currentLen - 8; i++) {
                 array[i] = currentLen / 2;
                 
@@ -74,31 +94,49 @@ public enum Shuffles {
                 
                 if(ArrayVisualizer.shuffleEnabled()) Delays.sleep(1);
             }
+
+            Delays.setIsOverride(isOverrided);
+            Delays.setCurrentDelay(curDelay);
+
         }
     },
     ALMOST {
         @Override
         public void shuffleArray(int[] array, ArrayVisualizer ArrayVisualizer, Delays Delays, Highlights Highlights, Writes Writes) {
             int currentLen = ArrayVisualizer.getCurrentLength();
-            
+
+            double curDelay = Delays.getCurrentDelay();
+            boolean isOverrided = Delays.isDelayOverrided();
+            Delays.setIsOverride(false);
+
             for(int i = 0; i < Math.max(currentLen / 20, 1); i++){
                 Writes.swap(array, (int)(Math.random()*currentLen), (int)(Math.random()*currentLen), 0, true, false);
                 
                 if(ArrayVisualizer.shuffleEnabled()) Delays.sleep(2);
             }
+
+            Delays.setIsOverride(isOverrided);
+            Delays.setCurrentDelay(curDelay);
         }
     },
     ALREADY {
         @Override
         public void shuffleArray(int[] array, ArrayVisualizer ArrayVisualizer, Delays Delays, Highlights Highlights, Writes Writes) {
             int currentLen = ArrayVisualizer.getCurrentLength();
-            
+
+            double curDelay = Delays.getCurrentDelay();
+            boolean isOverrided = Delays.isDelayOverrided();
+            Delays.setIsOverride(false);
+
             for(int i = 0; i < currentLen; i++) {
                 if(ArrayVisualizer.shuffleEnabled()) {
                     Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                     Delays.sleep(1);
                 }
             }
+            Delays.setIsOverride(isOverrided);
+            Delays.setCurrentDelay(curDelay);
+
         }
     };
 

@@ -537,14 +537,14 @@ final public class ArrayVisualizer {
         if(Highlights.fancyFinishEnabled()) {
             if(Delays.isDelayOverrided()){
                 double curDelay = Delays.getCurrentDelay();
-                Delays.setOverride(false);
+                Delays.setIsOverride(false);
                 double speed = Delays.getSleepRatio();
                 this.fancyFinish();
                 Delays.setSleepRatio(speed);
                 Delays.changeSkipped(false);
                 Highlights.clearAllMarks();
                 UtilFrame.setFPSBtnEnabled(true);
-                Delays.setOverride(true);
+                Delays.setIsOverride(true);
                 Delays.setCurrentDelay(curDelay);
             }else{
                 double speed = Delays.getSleepRatio();

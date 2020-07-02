@@ -5,11 +5,8 @@
 package frames;
 
 import java.awt.*;
-import java.util.Hashtable;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import main.ArrayManager;
 import main.ArrayVisualizer;
@@ -464,7 +461,7 @@ final public class UtilFrame extends JFrame {
 
     private void jButton3ActionPerformed() {//GEN-FIRST:event_jButton3ActionPerformed
         boolean speedPromptAllowed;
-        Delays.setOverride(false);
+        Delays.setIsOverride(false);
 
         if (this.abstractFrame == null) {
             speedPromptAllowed = true;
@@ -490,10 +487,10 @@ final public class UtilFrame extends JFrame {
 
     public void showSleepChanger(){
         if(delayORCheckBox.isSelected()){
-            Delays.setOverride(true);
+            Delays.setIsOverride(true);
             showChangeDelay();
         }else{
-            Delays.setOverride(false);
+            Delays.setIsOverride(false);
             jButton3ActionPerformed();
         }
         Delays.changeSkipped(false);
@@ -536,12 +533,12 @@ final public class UtilFrame extends JFrame {
 
     private void delayORCheckBoxActionPerformed(){
         if(delayORCheckBox.isSelected()) {
-            Delays.setOverride(true);
+            Delays.setIsOverride(true);
             jButton3.setText("Change Delay");
             showChangeDelay();
             //jButton3.addActionListener(evt -> showChangeDelay());
         }else{
-            Delays.setOverride(false);
+            Delays.setIsOverride(false);
             jButton3.setText("Change Speed");
             //jButton3.addActionListener(evt -> jButton3ActionPerformed());
         }
