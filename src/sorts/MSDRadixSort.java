@@ -55,8 +55,8 @@ final public class MSDRadixSort extends Sort {
         if(min >= max || pow < 0)
             return;
         
-        Highlights.markArray(2, max - 1);
-        Highlights.markArray(3, min);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, max - 1);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, min);
         
         @SuppressWarnings("unchecked")
         ArrayList<Integer>[] registers = new ArrayList[radix];
@@ -65,7 +65,7 @@ final public class MSDRadixSort extends Sort {
             registers[i] = new ArrayList<>();
         
         for(int i = min; i < max; i++) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             
             int digit = Reads.getDigit(array[i], pow, radix);
             registers[digit].add(array[i]);

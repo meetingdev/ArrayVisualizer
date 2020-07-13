@@ -54,7 +54,7 @@ final public class PigeonholeSort extends Sort {
         
         for(int x = 0; x < length; x++) {
             Writes.write(holes, array[x] - mi, holes[array[x] - mi] + 1, 1, false, true);
-            Highlights.markArray(1, x);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, x);
         }
         
         int j = 0;
@@ -64,7 +64,7 @@ final public class PigeonholeSort extends Sort {
                 Writes.write(holes, count, holes[count] - 1, 0, false, true);
                 Writes.write(array, j, count + mi, 1, false, false);
                 
-                Highlights.markArray(1, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, j);
                 j++;
             }
         }

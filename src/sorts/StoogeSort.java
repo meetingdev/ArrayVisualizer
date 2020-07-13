@@ -40,14 +40,14 @@ final public class StoogeSort extends Sort {
 	    
 	    Delays.sleep(0.0025);
 	    
-	    Highlights.markArray(1, i);
-        Highlights.markArray(2, j);
+	    Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, j);
 	    
         if (j - i + 1 >= 3) {
 	        int t = (j - i + 1) / 3;
 	        
-	        Highlights.markArray(3, j - t);
-	        Highlights.markArray(4, i + t);
+	        Highlights.markArray(Highlights.getMaximumLength() + 3, j - t);
+	        Highlights.markArray(Highlights.getMaximumLength() + 4, i + t);
 	
 	        this.stoogeSort(A, i, j-t);
 	        this.stoogeSort(A, i+t, j);

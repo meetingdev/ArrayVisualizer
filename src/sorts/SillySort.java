@@ -28,8 +28,6 @@ final public class SillySort extends Sort {
     private void sillySort(int[] array, int i, int j) {
 		int m;
 		
-		Delays.sleep(1);
-		
 		if (i < j) {
 		    /* find the middle of the array */
 		    m = i + ((j - i) / 2);
@@ -49,8 +47,8 @@ final public class SillySort extends Sort {
 		        Writes.swap(array, i, m + 1, 1, true, false);
 		    }
 		    
-		    Highlights.markArray(1, i);
-		    Highlights.markArray(2, m + 1);
+		    Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+		    Highlights.markArray(Highlights.getMaximumLength() + 2, m + 1);
 		    
 		    this.sillySort(array, i + 1, j);
 		}

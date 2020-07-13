@@ -103,8 +103,8 @@ final public class SqrtSort extends Sort {
         int left = leftLen - 1;
 
         while(left >= 0) {
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
             
             if(right < leftLen || Reads.compare(arr[pos + left], arr[pos + right]) > 0) {
                 Writes.write(arr, pos + (mergedPos--), arr[pos + (left--)], 1, true, auxwrite);
@@ -117,7 +117,7 @@ final public class SqrtSort extends Sort {
         if(right != mergedPos) {
             while(right >= leftLen) {
                 Writes.write(arr, pos + (mergedPos--), arr[pos + (right--)], 1, true, auxwrite);
-                Highlights.markArray(2, pos + right);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, pos + right);
             }
         }
         
@@ -137,8 +137,8 @@ final public class SqrtSort extends Sort {
             }
             else Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, auxwrite);
             
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         
         Highlights.clearMark(3);
@@ -146,7 +146,7 @@ final public class SqrtSort extends Sort {
         if(dist != left) {
             while(left < leftEnd) {
                 Writes.write(arr, pos + dist++, arr[pos + left++], 1, true, auxwrite);
-                Highlights.markArray(2, pos + left);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
             }
         }
         
@@ -164,8 +164,8 @@ final public class SqrtSort extends Sort {
             }
             else Writes.write(arr, arrPos + dist++, arr[arrPos + arrMerge++], 1, true, auxwrite);
             
-            Highlights.markArray(2, arrPos + arrMerge);
-            Highlights.markArray(3, bufPos + bufMerge);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, arrPos + arrMerge);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, bufPos + bufMerge);
         }
         
         Highlights.clearMark(3);
@@ -173,7 +173,7 @@ final public class SqrtSort extends Sort {
         if(dist != arrMerge) {
             while(arrMerge < leftLen) {
                 Writes.write(arr, arrPos + dist++, arr[arrPos + arrMerge++], 1, true, auxwrite);
-                Highlights.markArray(2, arrPos + arrMerge);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, arrPos + arrMerge);
             }
         }
         
@@ -191,8 +191,8 @@ final public class SqrtSort extends Sort {
             }
             else Writes.write(arr, pos + dist++, arr[pos + right++], 1, true, auxwrite);
             
-            Highlights.markArray(2, pos + left);
-            Highlights.markArray(3, pos + right);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, pos + left);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, pos + right);
         }
         
         Highlights.clearMark(3);
@@ -204,7 +204,7 @@ final public class SqrtSort extends Sort {
             
             while(left < leftEnd) {
                 Writes.write(arr, pos + --rightEnd, arr[pos + --leftEnd], 1, true, auxwrite);
-                Highlights.markArray(2, pos + leftEnd);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, pos + leftEnd);
             }
         } 
         else {

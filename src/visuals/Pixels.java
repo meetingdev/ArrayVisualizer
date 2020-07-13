@@ -117,6 +117,7 @@ final public class Pixels extends Visual {
                         y = (int) ((ArrayVisualizer.windowHeight() / 4) * Math.sin((2 * Math.PI * ((double) array[i] / ArrayVisualizer.getCurrentLength()))) + ArrayVisualizer.windowHalfHeight());
                     }
                     else {
+                if(width > 0 || !ArrayVisualizer.getIsDotsLimited()) {
                         y = (int) ((ArrayVisualizer.windowHeight() - 20) - (array[i] * Renderer.getYScale()));
                     }
                     this.mainRender.fillRect(Renderer.getOffset() + 20, y, Renderer.getDotDimensions(), Renderer.getDotDimensions());

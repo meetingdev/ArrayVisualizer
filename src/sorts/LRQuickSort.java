@@ -30,27 +30,27 @@ final public class LRQuickSort extends Sort {
         int i = p;
         int j = r;
 
-        Highlights.markArray(3, pivot);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, pivot);
         
         while (i <= j) {
             while (Reads.compare(a[i], x) == -1){
                 i++;
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.5);
             }
             while (Reads.compare(a[j], x) == 1){
                 j--;
-                Highlights.markArray(2, j);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, j);
                 Delays.sleep(0.5);
             }
 
             if (i <= j) {
                 // Follow the pivot and highlight it.
                 if(i == pivot) {
-                    Highlights.markArray(3, j);
+                    Highlights.markArray(Highlights.getMaximumLength() + 3, j);
                 }
                 if(j == pivot) {
-                    Highlights.markArray(3, i);
+                    Highlights.markArray(Highlights.getMaximumLength() + 3, i);
                 }
                 
                 Writes.swap(a, i, j, 1, true, false);

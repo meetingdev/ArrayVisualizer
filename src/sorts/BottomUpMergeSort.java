@@ -47,24 +47,24 @@ final public class BottomUpMergeSort extends Sort {
             if (Reads.compare(c[i], c[j]) <= 0) {
                 if(activeSound) {
                     Writes.write(d, k++, c[i++], 0.5, false, true);
-                    Highlights.markArray(1, i);
-                    Highlights.markArray(2, j);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, j);
                 }
                 else {
                     Writes.write(d, k++, c[i++], 0.5, false, false);
-                    Highlights.markArray(1, k - 1);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, k - 1);
                     Highlights.clearMark(2);
                 }
             }
             else {
                 if(activeSound) {
                     Writes.write(d, k++, c[j++], 0.5, false, true);
-                    Highlights.markArray(1, j);
-                    Highlights.markArray(2, i);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, j);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, i);
                 }
                 else {
                     Writes.write(d, k++, c[j++], 0.5, false, false);
-                    Highlights.markArray(1, k - 1);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, k - 1);
                     Highlights.clearMark(2);
                 }
             }
@@ -99,7 +99,7 @@ final public class BottomUpMergeSort extends Sort {
            else
                for (int j = i; j <= n-1; j++) {
                    Writes.write(y, j, x[j], 1, false, activeSound); // copy last segment to y
-                   Highlights.markArray(1, j);
+                   Highlights.markArray(Highlights.getMaximumLength() + 1, j);
                    Highlights.clearMark(2);
                }  
 

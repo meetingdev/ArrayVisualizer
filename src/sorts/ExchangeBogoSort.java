@@ -28,8 +28,8 @@ final public class ExchangeBogoSort extends BogoSorting {
             int index1 = (int) (Math.random() * currentLen),
                 index2 = (int) (Math.random() * currentLen);
             
-            Highlights.markArray(1, index1);
-            Highlights.markArray(2, index2);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, index1);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, index2);
             
             if(index1 < index2) {
                 if(Reads.compare(array[index1], array[index2]) == 1){

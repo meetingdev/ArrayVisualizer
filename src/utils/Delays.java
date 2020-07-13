@@ -39,7 +39,8 @@ SOFTWARE.
 final public class Delays {
     private volatile double SLEEPRATIO;
     private volatile boolean SKIPPED;
-    
+    private volatile boolean isDelayOverrided;
+
     private double addamt;
     private double delay;
     private double nanos;
@@ -63,8 +64,9 @@ final public class Delays {
         this.formatter.setDecimalFormatSymbols(this.symbols);
         
         this.Sounds = ArrayVisualizer.getSounds();
+        this.isDelayOverrided = false;
     }
-    
+
     public String displayCurrentDelay() {
         String currDelay = "";
         
@@ -73,13 +75,24 @@ final public class Delays {
         }
         else if(this.currentDelay < 0.001) {
             currDelay = "< 0.001";
+    public void setDelayOverride(double value) {
+        this.isDelayOverrided = true;
+        this.delay = value;
         }
         else {
             currDelay = formatter.format(this.currentDelay);
+
+    public boolean isDelayOverrided() {
+        return isDelayOverrided;
         }
         
-        return currDelay;
     }
+
+        return currDelay;
+    public void setIsOverride(boolean value) {
+        this.isDelayOverrided = value;
+    }
+
     public double getCurrentDelay() {
         return this.currentDelay;
     }
@@ -103,7 +116,7 @@ final public class Delays {
     public void setSleepRatio(double sleepRatio) {
         this.SLEEPRATIO = sleepRatio;
     }
-    
+
     public boolean skipped() {
         return this.SKIPPED;
     }
@@ -111,12 +124,19 @@ final public class Delays {
         this.SKIPPED = Bool;
         if(this.SKIPPED) this.Sounds.changeNoteDelayAndFilter(1);
     }
-    
-    public void sleep(double millis){
-        if(millis <= 0) {
-            return;
-        }
-        
+
+    public void sleep(double millis) {
+        if (SKIPPED || millis == 0) {
+            try {
+                Thread.sleep(0);
+            } catch (Exception ex) {
+                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!isDelayOverrided) {
+            if (millis <= 0) {
+                return;
+            }
+
         this.delay += (millis * (1 / this.SLEEPRATIO));
         this.currentDelay = (millis * (1 / this.SLEEPRATIO));
         

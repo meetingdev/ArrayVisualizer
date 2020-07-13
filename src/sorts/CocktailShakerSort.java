@@ -56,22 +56,25 @@ final public class CocktailShakerSort extends Sort {
                     Writes.swap(array, j, j + 1, sleep, true, false);
                 }
                 
-                Highlights.markArray(1, j);
-                Highlights.markArray(2, j + 1);
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j + 1);
                 
-                Delays.sleep(sleep / 2);
+                Delays.sleep(0.01);
             }
+
             for(int j = end + start - i - 1; j > i; j--){
                 if(Reads.compare(array[j], array[j - 1]) == -1) {
                     Writes.swap(array, j, j - 1, sleep, true, false);
                 }
                 
-                Highlights.markArray(1, j);
-                Highlights.markArray(2, j - 1);
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j - 1);
                 
-                Delays.sleep(sleep / 2);
+                Delays.sleep(0.01);
             }
-            
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
+            Highlights.markArray(end + start - i - 1, end + start - i - 1, Color.GREEN, Mark.TYPE_SORTED);
+
             i++;
         }
     }

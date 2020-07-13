@@ -46,8 +46,8 @@ final public class TournamentSort extends Sort {
     }
 
     private int tourneyCompare(int a, int b) {
-        Highlights.markArray(2, a);
-        Highlights.markArray(3, b);
+        Highlights.markArray(Highlights.getMaximumLength() + 2, a);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, b);
         
         Delays.sleep(1);
         
@@ -150,7 +150,7 @@ final public class TournamentSort extends Sort {
 		for (int i = 0; i < currentLen; i++) {
 			Integer selected = copy.get(i);
 			
-			Writes.write(arr, i, selected, 1, true, false);
+			Writes.write(arr, i, selected, 1, true, false);			
 		}
 	}
 

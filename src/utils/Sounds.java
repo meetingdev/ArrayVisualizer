@@ -2,6 +2,7 @@ package utils;
 
 import java.io.InputStream;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
@@ -125,13 +126,14 @@ final public class Sounds {
                     int noteCount = Math.min(Highlights.getMarkCount(), NUMCHANNELS);
                     int voice = 0;
 
-                    for(int i : Highlights.highlightList()) {
+                    //for(int i : Highlights.highlightList()) {
+                    for(Mark i : Highlights.highlightList()) {
                         try {
-                            if(i != -1) {
+                            if(i.getPosition() != -1 && (i.isDefault())) {
                                 int currentLen = ArrayVisualizer.getCurrentLength();
 
                                 //PITCH
-                                double pitch = Sounds.this.array[Math.min(Math.max(i, 0), currentLen - 1)] / (double) currentLen * (PITCHMAX - PITCHMIN) + PITCHMIN;
+                                double pitch = Sounds.this.array[Math.min(Math.max(i.getPosition(), 0), currentLen - 1)] / (double) currentLen * (PITCHMAX - PITCHMIN) + PITCHMIN;
                                 int pitchmajor = (int) pitch;
                                 int pitchminor = (int)((pitch-((int)pitch))*8192d)+8192;
 
@@ -144,7 +146,7 @@ final public class Sounds {
                                 channels[voice].noteOn(pitchmajor, vel);
                                 channels[voice].setPitchBend(pitchminor);
                                 channels[voice].controlChange(REVERB, 10);
-                                
+
                                 if((++voice % Math.max(noteCount, 1)) == 0)
                                     break;
                             }

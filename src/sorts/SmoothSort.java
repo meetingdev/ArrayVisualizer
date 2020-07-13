@@ -46,8 +46,8 @@ final public class SmoothSort extends Sort {
             int rt = head - 1;
             int lf = head - 1 - LP[pshift - 2];
             
-            Highlights.markArray(2, rt);
-            Highlights.markArray(3, lf);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, rt);
+            Highlights.markArray(Highlights.getMaximumLength() + 3, lf);
             
             Delays.sleep(0.325);
             
@@ -88,8 +88,8 @@ final public class SmoothSort extends Sort {
             if (!isTrusty && pshift > 1) {
                 int rt = head - 1;
                 int lf = head - 1 - LP[pshift - 2];
-                Highlights.markArray(2, rt);
-                Highlights.markArray(3, lf);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, rt);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, lf);
                 
                 Delays.sleep(0.325);
                 

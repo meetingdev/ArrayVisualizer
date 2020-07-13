@@ -1,9 +1,9 @@
 package visuals;
 
 import java.awt.Color;
+import java.awt.*;
 
 import main.ArrayVisualizer;
-import templates.Visual;
 import utils.Highlights;
 import utils.Renderer;
 
@@ -30,12 +30,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
  *
  */
 
 final public class Bars extends Visual {
     public Bars(ArrayVisualizer ArrayVisualizer) {
         super(ArrayVisualizer);
+final public class Bars {
+    boolean strokeEnabled = true;
+    public void setStrokeEnabled(boolean value){
+        this.strokeEnabled = value;
     }
 
     @Override
@@ -89,6 +95,9 @@ final public class Bars extends Visual {
             }
             else {
                 if(width > 0) {
+                    y = (int) (((ArrayVisualizer.windowHeight() - 20)) - array[i] * Renderer.getYScale());
+                    mainRender.fillRect(Renderer.getOffset() + 20, y, width, (int) Math.max(array[i] * Renderer.getYScale(), 1));
+                    if(strokeEnabled && width >= 5){
                     /*
                     int gap = 0;
                     if(width > 5) {

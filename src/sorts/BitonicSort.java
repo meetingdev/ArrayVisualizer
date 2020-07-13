@@ -39,8 +39,8 @@ final public class BitonicSort extends Sort {
     
     private void compare(int[] A, int i, int j, boolean dir)
 	{
-    	Highlights.markArray(1, i);
-    	Highlights.markArray(2, j);
+    	Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+    	Highlights.markArray(Highlights.getMaximumLength() + 2, j);
     	
     	Delays.sleep(0.5);
     	

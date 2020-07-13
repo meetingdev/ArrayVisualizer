@@ -1,10 +1,14 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
+import utils.Mark;
+import java.awt.*;
+
+/*
+DO Time: Not Tested
+AddMarks: Working
+ */
 
 /*
  * 
@@ -50,19 +54,17 @@ final public class SmartBubbleSort extends Sort {
     
     @Override
     public void runSort(int[] array, int length, int bucketCount) {
-        for(int i = length - 1; i > 0; i--) {
-            boolean sorted = true;
+        for(int i = length - 1; i > 0; i--){
             for(int j = 0; j < i; j++) {
                 if(Reads.compare(array[j], array[j + 1]) == 1){
                     Writes.swap(array, j, j + 1, 0.075, true, false);
-                    sorted = false;
                 }
                 
-                Highlights.markArray(1, j);
-                Highlights.markArray(2, j + 1);
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j + 1);
                 Delays.sleep(0.025);
             }
-            if(sorted) break;
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
         }
     }
 }

@@ -89,7 +89,7 @@ final public class AmericanFlagSort extends Sort {
             int digit = 0;
             
             for (int i = start; i < length; i++) {
-                Highlights.markArray(1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
                 Delays.sleep(0.75);
                 
                 int d = array[i];

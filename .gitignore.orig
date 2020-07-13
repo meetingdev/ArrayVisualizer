@@ -1,0 +1,8 @@
+*.class
+<<<<<<< HEAD
+/bin/
+=======
+.idea/
+
+ArrayVisualizer.iml
+>>>>>>> without_maven

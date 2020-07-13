@@ -1,0 +1,94 @@
+package sorts;
+
+import templates.Sort;
+import utils.Delays;
+import utils.Highlights;
+import utils.Reads;
+import utils.Writes;
+
+final public class LRQuickSort extends Sort {
+    public LRQuickSort(Delays delayOps, Highlights markOps, Reads readOps, Writes writeOps) {
+        super(delayOps, markOps, readOps, writeOps);
+        
+        this.setSortPromptID("LR Quick");
+        this.setRunAllID("Quick Sort, Left/Right Pointers");
+        this.setReportSortID("Left/Right Quicksort");
+        this.setCategory("Exchange Sorts");
+        this.isComparisonBased(true);
+        this.isBucketSort(false);
+        this.isRadixSort(false);
+        this.isUnreasonablySlow(false);
+        this.setUnreasonableLimit(0);
+        this.isBogoSort(false);
+    }
+
+    // Thanks to Timo Bingmann for providing a good reference for Quick Sort w/ LR pointers.
+    private void quickSort(int[] a, int p, int r) {       
+        int pivot = p + (r - p) / 2;
+        int x = a[pivot];
+        
+        int i = p;
+        int j = r;
+
+<<<<<<< HEAD
+        Highlights.markArray(3, pivot);
+=======
+        Highlights.markArray(Highlights.getMaximumLength() + 3, pivot);
+>>>>>>> without_maven
+        
+        while (i <= j) {
+            while (Reads.compare(a[i], x) == -1){
+                i++;
+<<<<<<< HEAD
+                Highlights.markArray(1, i);
+=======
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+>>>>>>> without_maven
+                Delays.sleep(0.5);
+            }
+            while (Reads.compare(a[j], x) == 1){
+                j--;
+<<<<<<< HEAD
+                Highlights.markArray(2, j);
+=======
+                Highlights.markArray(Highlights.getMaximumLength() + 2, j);
+>>>>>>> without_maven
+                Delays.sleep(0.5);
+            }
+
+            if (i <= j) {
+                // Follow the pivot and highlight it.
+                if(i == pivot) {
+<<<<<<< HEAD
+                    Highlights.markArray(3, j);
+                }
+                if(j == pivot) {
+                    Highlights.markArray(3, i);
+=======
+                    Highlights.markArray(Highlights.getMaximumLength() + 3, j);
+                }
+                if(j == pivot) {
+                    Highlights.markArray(Highlights.getMaximumLength() + 3, i);
+>>>>>>> without_maven
+                }
+                
+                Writes.swap(a, i, j, 1, true, false);
+                
+                i++;
+                j--;
+            }
+        }
+        
+        if(p < j) {
+            this.quickSort(a, p, j);
+        }
+        if(i < r) {
+            this.quickSort(a, i, r);
+        }
+    }
+
+    @Override
+    public void runSort(int[] array, int currentLength, int bucketCount) {
+        this.quickSort(array, 0, currentLength - 1);
+    }
+}

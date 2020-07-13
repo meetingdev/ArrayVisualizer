@@ -93,8 +93,8 @@ public abstract class CombSorting extends Sort {
                     Writes.swap(array, i, i+gap, 0.75, true, false);
                     swapped = true;
                 }
-                Highlights.markArray(1, i);
-                Highlights.markArray(2, i + gap);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i + gap);
                 
                 Delays.sleep(0.25);
                 Highlights.clearMark(1);

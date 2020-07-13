@@ -56,20 +56,20 @@ final public class StableQuickSort extends Sort {
     private void copy(ArrayList<Integer> list, int [] array, int startIndex) {
         for (int num : list) {
             Writes.write(array, startIndex++, num, 0.25, false, false);
-            Highlights.markArray(1, startIndex);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, startIndex);
         }
     }
     
     /* Partition/Quicksort "Stable Sort" version using O(n) space */
     private int stablePartition(int[] array, int start, int end) {
         int pivotValue = array[start]; //poor pivot choice
-        Highlights.markArray(3, start);
+        Highlights.markArray(Highlights.getMaximumLength() + 3, start);
         
         ArrayList<Integer> leftList  = new ArrayList<>();
         ArrayList<Integer> rightList = new ArrayList<>();
 
         for (int i = start + 1 ; i <= end; i++) {
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             
             if (Reads.compare(array[i], pivotValue) == -1) {
                 Writes.mockWrite(end - start, leftList.size(), array[i], 0.25);
@@ -87,7 +87,7 @@ final public class StableQuickSort extends Sort {
         int newPivotIndex = start + leftList.size();
         
         Writes.write(array, newPivotIndex, pivotValue, 0.25, false, false);
-        Highlights.markArray(1, newPivotIndex);
+        Highlights.markArray(Highlights.getMaximumLength() + 1, newPivotIndex);
         
         this.copy(rightList, array, newPivotIndex + 1);
 

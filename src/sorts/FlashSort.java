@@ -6,6 +6,7 @@ import templates.Sort;
 import utils.Delays;
 import utils.Highlights;
 import utils.Reads;
+import utils.Shuffles;
 import utils.Writes;
 
 final public class FlashSort extends Sort {
@@ -66,7 +67,7 @@ final public class FlashSort extends Sort {
             int big;
             int bigIndex;
 
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             
             //which is bigger A(i) or A(i+1)
             if(Reads.compare(array[i], array[i + 1]) == -1)
@@ -97,7 +98,7 @@ final public class FlashSort extends Sort {
         }
 
         //do the last element
-        Highlights.markArray(1, length - 1);
+        Highlights.markArray(Highlights.getMaximumLength() + 1, length - 1);
         if(Reads.compare(array[length - 1], min) == -1)
         {
             min = array[length - 1];
@@ -145,7 +146,7 @@ final public class FlashSort extends Sort {
         for(int h = 0; h < length; h++)
         {
             
-            Highlights.markArray(1, h);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, h);
         
             //classify the A(i) value
             K = ((int)((array[h] - min) * c)) + 1;
@@ -234,7 +235,7 @@ final public class FlashSort extends Sort {
                 //location with the evicted value
                 int temp = array[location];
                 Writes.write(array, location, evicted, 1, false, false);
-                Highlights.markArray(1, location);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, location);
                 evicted = temp;
                 
                 //decrease the count for this class

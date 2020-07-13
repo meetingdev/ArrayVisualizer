@@ -57,7 +57,7 @@ final public class PatienceSort extends Sort {
 		int change = list.size() / 4;
 		
 		while(list.get(at).compare(find) != 0 && change > 0){
-			Highlights.markArray(1, at);
+			Highlights.markArray(Highlights.getMaximumLength() + 1, at);
 			Delays.sleep(0.5);
 			
 			if(list.get(at).compare(find) < 0)
@@ -68,7 +68,7 @@ final public class PatienceSort extends Sort {
 			change /= 2;
 		}
 		
-		Highlights.markArray(1, at);
+		Highlights.markArray(Highlights.getMaximumLength() + 1, at);
 		Delays.sleep(0.5);
 	}
 

@@ -1,10 +1,9 @@
 package sorts;
 
 import templates.Sort;
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import utils.*;
+
+import java.awt.*;
 
 /*
  * 
@@ -57,16 +56,16 @@ final public class DoubleSelectionSort extends Sort {
         
         while(left <= right) {
             for(int i = left; i <= right; i++) {
-                Highlights.markArray(3, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, i);
                 
                 if(Reads.compare(array[i], array[biggest]) == 1) {
                     biggest = i;
-                    Highlights.markArray(1, biggest);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, biggest);
                     Delays.sleep(0.01);
                 }
                 if(Reads.compare(array[i], array[smallest]) == -1) {
                     smallest = i;
-                    Highlights.markArray(2, smallest);
+                    Highlights.markArray(Highlights.getMaximumLength() + 2, smallest);
                     Delays.sleep(0.01);
                 }
                 
@@ -77,7 +76,9 @@ final public class DoubleSelectionSort extends Sort {
             
             Writes.swap(array, left, smallest, 0.02, true, false);
             Writes.swap(array, right, biggest, 0.02, true, false);
-            
+            Highlights.markArray(left, left, Color.GREEN, Mark.TYPE_SORTED);
+            Highlights.markArray(right, right, Color.GREEN, Mark.TYPE_SORTED);
+
             left++;
             right--;
             

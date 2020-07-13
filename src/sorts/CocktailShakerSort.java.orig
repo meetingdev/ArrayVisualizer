@@ -1,0 +1,122 @@
+package sorts;
+
+import templates.Sort;
+<<<<<<< HEAD
+import utils.Delays;
+import utils.Highlights;
+import utils.Reads;
+import utils.Writes;
+=======
+import utils.*;
+
+import java.awt.*;
+
+/*
+DO Time: Not Tested
+AddMarks: Working
+ */
+>>>>>>> without_maven
+
+/*
+ * 
+MIT License
+
+Copyright (c) 2019 w0rthy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ *
+ */
+
+final public class CocktailShakerSort extends Sort {
+    public CocktailShakerSort(Delays delayOps, Highlights markOps, Reads readOps, Writes writeOps) {
+        super(delayOps, markOps, readOps, writeOps);
+        
+        this.setSortPromptID("Cocktail Shaker");
+        this.setRunAllID("Cocktail Shaker Sort");
+        this.setReportSortID("Cocktail Shaker Sort");
+        this.setCategory("Exchange Sorts");
+        this.isComparisonBased(true);
+        this.isBucketSort(false);
+        this.isRadixSort(false);
+        this.isUnreasonablySlow(false);
+        this.setUnreasonableLimit(0);
+        this.isBogoSort(false);
+    }
+
+    private void cocktailShaker(int[] array, int start, int end, double sleep) {
+        int i = start;
+        while(i < ((end / 2) + start)) {
+            for(int j = i; j < end + start - i - 1; j++) {
+                if(Reads.compare(array[j], array[j + 1]) == 1) {
+                    Writes.swap(array, j, j + 1, sleep, true, false);
+                }
+                
+<<<<<<< HEAD
+                Highlights.markArray(1, j);
+                Highlights.markArray(2, j + 1);
+                
+                Delays.sleep(sleep / 2);
+            }
+=======
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j + 1);
+                
+                Delays.sleep(0.01);
+            }
+
+>>>>>>> without_maven
+            for(int j = end + start - i - 1; j > i; j--){
+                if(Reads.compare(array[j], array[j - 1]) == -1) {
+                    Writes.swap(array, j, j - 1, sleep, true, false);
+                }
+                
+<<<<<<< HEAD
+                Highlights.markArray(1, j);
+                Highlights.markArray(2, j - 1);
+                
+                Delays.sleep(sleep / 2);
+            }
+            
+=======
+                Highlights.markArray(Highlights.getMaximumLength()+1, j);
+                Highlights.markArray(Highlights.getMaximumLength()+2, j - 1);
+                
+                Delays.sleep(0.01);
+            }
+            Highlights.markArray(i, i, Color.GREEN, Mark.TYPE_SORTED);
+            Highlights.markArray(end + start - i - 1, end + start - i - 1, Color.GREEN, Mark.TYPE_SORTED);
+
+>>>>>>> without_maven
+            i++;
+        }
+    }
+    
+    public void customSort(int[] array, int start, int end) {
+        this.cocktailShaker(array, start, end, 1);
+    }
+    
+    @Override
+    public void runSort(int[] array, int length, int bucketCount) {
+<<<<<<< HEAD
+        this.cocktailShaker(array, 0, length, 0.1);
+=======
+        this.cocktailShaker(array, 0, length, 0.0875);
+>>>>>>> without_maven
+    }
+}

@@ -31,9 +31,9 @@ final public class BinaryGnomeSort extends Sort {
             while (lo < hi) {
                 int mid = lo + ((hi - lo) / 2);
                 
-                Highlights.markArray(1, lo);
-                Highlights.markArray(3, mid);
-                Highlights.markArray(2, hi);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, lo);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, mid);
+                Highlights.markArray(Highlights.getMaximumLength() + 3, hi);
                 
                 Delays.sleep(1);
                 

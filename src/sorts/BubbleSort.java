@@ -60,8 +60,8 @@ final public class BubbleSort extends Sort {
                     sorted = false;
                 }
 
-                Highlights.markArray(1, i);
-                Highlights.markArray(2, i + 1);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i + 1);
                 Delays.sleep(0.05);
             }
         }    

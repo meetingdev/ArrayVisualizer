@@ -46,12 +46,17 @@ import visuals.VisualStyles;
  * - - Entering in your own set of data
  * - - Pass ArrayVisualizer as "observer object" to sorts
  * - - Pass formatter/symbols from ArrayVisualizer into utils
+ * - - Justified statistics?
+ * - - Up to 2^14 numbers.
  * - Fix:
  * - - Circular pointer
  * - - Combsort / Radix Sorts not complying with "Skip Sort"
  * - - "Skip Sort" / changing array size saving previous speed
+ * - - Counting Sort
+ * - - "0th" Linked Dot
  * - - .dls file in soundfont dir
  * - - 1080p in OBS(?)
+ * - - Visual time doesn't match on sorts with same real time while Delay Override is in use
  * - Create:
  * - - Better code design for ViewPrompt
  * - - options to choose comb gap
@@ -72,10 +77,16 @@ import visuals.VisualStyles;
  * - - run all sorts in specific category
  * - - option for custom parts for intro sorts
  * - - option for simple shatter rate???
+ * - - Timo Bingmann's green sweep also *verify* a sorted array
+ * - - Bars Stroke
+ * - - Text Antialiasing
+ * - - FPS Changing
+ * - - Delay Override
+ * - - Fix Speed after skip sort
  * - Finish:
  * - - SkaSort
  * - - HolyGrailSort
- * - - Run All Sorts in Category
+ * - - Run All/Run All Sorts in Category
  * - Cleanup:
  * - - Treesort
  */
@@ -142,12 +153,14 @@ final public class ArrayVisualizer {
 
     final int[] array = new int[this.MAX_ARRAY_VAL];
     
-    private String[][] ComparisonSorts;     // First row of Comparison/DistributionSorts arrays consists of class names
-    private String[][] DistributionSorts;   // Second row consists of user-friendly names
+    private String[][] ComparisonSorts;     //First row of Comparison/DistributionSorts arrays consists of class names
+    private String[][] DistributionSorts;   //Second row consists of user-friendly names
     private String[] InvalidSorts;
     
     private volatile int currentLen;
     private volatile int equalItems;
+
+    private double threadDelay = 16.67;
     
     private ArrayManager ArrayManager;
     private SortAnalyzer SortAnalyzer;
@@ -196,19 +209,21 @@ final public class ArrayVisualizer {
     private Delays Delays;
     private Highlights Highlights;
     private Reads Reads;
-    private Renderer Renderer;
+    public Renderer Renderer;
     private Sounds Sounds;
     private Timer Timer;
     private VisualStyles VisualStyles;
     private Writes Writes;
 
+    private Boolean isDotsLimited = false;
+
     public ArrayVisualizer() {
-        this.currentLen = 2048;
+        this.currentLen = 64;
         this.equalItems = 1;
         
-        this.Highlights = new Highlights(this, this.MAX_ARRAY_VAL);
-        this.Sounds = new Sounds(this.array, this);
         this.Delays = new Delays(this);
+        this.Highlights = new Highlights(this.MAX_ARRAY_VAL);
+        this.Sounds = new Sounds(this.array, this);
         this.Timer = new Timer();
         this.Reads = new Reads(this);
         this.Renderer = new Renderer(this);
@@ -256,8 +271,7 @@ final public class ArrayVisualizer {
         
         //TODO: Overhaul visual code to properly reflect Swing (JavaFX?) style and conventions
         
-        //DRAW THREAD
-        this.visualsThread = new Thread() {
+        //DRAW THREAD        this.visualsThread = new Thread() {
             @Override
             public void run() {
                 utils.Renderer.initializeVisuals(ArrayVisualizer.this);
@@ -308,8 +322,20 @@ final public class ArrayVisualizer {
         
         this.Sounds.startAudioThread();
         this.drawWindows();
+    }        //DRAW THREAD
+                
+    public int getFPS(){
+        return (int) Math.round(1000/this.threadDelay);
     }
-    
+
+    public void setIsDotsLimited(boolean value){
+        this.isDotsLimited = value;
+    }
+
+    public Boolean getIsDotsLimited(){
+        return this.isDotsLimited;
+    }
+
     public ArrayManager getArrayManager() {
         return this.ArrayManager;
     }
@@ -601,10 +627,26 @@ final public class ArrayVisualizer {
         this.Timer.disableRealTimer();
         this.Highlights.clearAllMarks();
 
-        double speed = this.Delays.getSleepRatio(); 
-        this.verifySortAndSweep();
-        this.Delays.setSleepRatio(speed);
-        this.Delays.changeSkipped(false);
+        if(Highlights.fancyFinishEnabled()) {
+            if(Delays.isDelayOverrided()){
+                double curDelay = Delays.getCurrentDelay();
+                Delays.setIsOverride(false);
+                double speed = Delays.getSleepRatio();
+                this.fancyFinish();
+                Delays.setSleepRatio(speed);
+                Delays.changeSkipped(false);
+                Highlights.clearAllMarks();
+                UtilFrame.setFPSBtnEnabled(true);
+                Delays.setIsOverride(true);
+                Delays.setCurrentDelay(curDelay);
+            }else{
+                double speed = Delays.getSleepRatio();
+                this.fancyFinish();
+                Delays.setSleepRatio(speed);
+                Delays.changeSkipped(false);
+                Highlights.clearAllMarks();
+                UtilFrame.setFPSBtnEnabled(true);
+            }
 
         this.Highlights.clearAllMarks();
     }

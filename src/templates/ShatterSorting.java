@@ -50,7 +50,7 @@ public abstract class ShatterSorting extends Sort {
         
         for(int i = 0; i < length; i++){
             registers[array[i] / num].add(array[i]);
-            Highlights.markArray(1, i);
+            Highlights.markArray(Highlights.getMaximumLength() + 1, i);
             
             Writes.mockWrite(length, array[i] / num, array[i], 0.5);
         }
@@ -71,7 +71,7 @@ public abstract class ShatterSorting extends Sort {
                 else
                     Writes.write(tmp, j, array[i * num + j], 0.5, false, true);
                 
-                Highlights.markArray(2, i * num + j);
+                Highlights.markArray(Highlights.getMaximumLength() + 2, i * num + j);
             }
             
             Highlights.clearMark(2);
@@ -84,7 +84,7 @@ public abstract class ShatterSorting extends Sort {
                 }
                 
                 Writes.write(array, i * num + (tmpj % num), tmpj, 1, false, false);
-                Highlights.markArray(1, i * num + (tmpj % num));
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i * num + (tmpj % num));
             }
             
             Highlights.clearMark(1);

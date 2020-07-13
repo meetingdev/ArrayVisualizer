@@ -93,7 +93,8 @@ final public class GravitySort extends Sort {
                 
                 Writes.write(array, x, count, 0.001, true, false);
             }
-            Highlights.markArray(2, length - i - 1);
+            Highlights.markArray(Highlights.getMaximumLength() + 2, length - i - 1);
+            Delays.sleep(0.001);
         }
     }
 }

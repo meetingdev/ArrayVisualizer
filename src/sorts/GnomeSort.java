@@ -31,8 +31,8 @@ final public class GnomeSort extends Sort {
             if (Reads.compare(array[i], array[i-1]) >= 0)
             {
                 i++;
-                Highlights.markArray(1, i);
-                Delays.sleep(0.04);
+                Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                Delays.sleep(0.02);
             }
             else
             {
@@ -42,8 +42,8 @@ final public class GnomeSort extends Sort {
                 
                 if (i > 1) {
                     i--;
-                    Highlights.markArray(1, i);
-                    Delays.sleep(0.02);
+                    Highlights.markArray(Highlights.getMaximumLength() + 1, i);
+                    Delays.sleep(0.01);
                 }
             }
         }
