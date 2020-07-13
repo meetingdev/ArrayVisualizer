@@ -62,7 +62,7 @@ final public class SortAnalyzer {
     }
     
     public void analyzeSorts() {
-        try (ScanResult scanResult = new ClassGraph().whitelistPackages("src/main/sorts").scan()) {
+        try (ScanResult scanResult = new ClassGraph().whitelistPackages("sorts").scan()) {
             List<ClassInfo> sortFiles;
             sortFiles = scanResult.getAllClasses();
             
