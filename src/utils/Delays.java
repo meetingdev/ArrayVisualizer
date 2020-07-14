@@ -44,51 +44,52 @@ final public class Delays {
     private double addamt;
     private double delay;
     private double nanos;
-    
+
     private volatile double currentDelay;
-    
+
     private DecimalFormat formatter;
     private DecimalFormatSymbols symbols;
-    
+
     private Sounds Sounds;
-    
+
     public Delays(ArrayVisualizer ArrayVisualizer) {
         this.SLEEPRATIO = 1.0;
         this.SKIPPED = false;
         this.addamt = 0;
-        
+
         this.formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
         this.symbols = this.formatter.getDecimalFormatSymbols();
-        
+
         this.symbols.setGroupingSeparator(',');
         this.formatter.setDecimalFormatSymbols(this.symbols);
-        
+
         this.Sounds = ArrayVisualizer.getSounds();
         this.isDelayOverrided = false;
     }
 
     public String displayCurrentDelay() {
         String currDelay = "";
-        
-        if(this.currentDelay == 0 || this.SKIPPED) {
+
+        if (this.currentDelay == 0 || this.SKIPPED) {
             currDelay = "0";
-        }
-        else if(this.currentDelay < 0.001) {
+        } else if (this.currentDelay < 0.001) {
             currDelay = "< 0.001";
+        } else {
+            currDelay = formatter.format(this.currentDelay);
+        }
+
+        return currDelay;
+    }
+
     public void setDelayOverride(double value) {
         this.isDelayOverrided = true;
         this.delay = value;
-        }
-        else {
-            currDelay = formatter.format(this.currentDelay);
+    }
 
     public boolean isDelayOverrided() {
         return isDelayOverrided;
-        }
-        
     }
 
-        return currDelay;
     public void setIsOverride(boolean value) {
         this.isDelayOverrided = value;
     }
@@ -96,23 +97,26 @@ final public class Delays {
     public double getCurrentDelay() {
         return this.currentDelay;
     }
+
     public void setCurrentDelay(double value) {
         this.delay = value;
     }
+
     public void updateCurrentDelay(double oldRatio, double newRatio) {
         this.delay = (this.delay * oldRatio) / newRatio;
         this.currentDelay = this.delay;
         this.Sounds.changeNoteDelayAndFilter((int) this.currentDelay);
         this.addamt = 0;
-    
-        if(this.currentDelay < 0) {
+
+        if (this.currentDelay < 0) {
             this.delay = this.currentDelay = 0;
         }
     }
-    
+
     public double getSleepRatio() {
         return this.SLEEPRATIO;
     }
+
     public void setSleepRatio(double sleepRatio) {
         this.SLEEPRATIO = sleepRatio;
     }
@@ -120,9 +124,10 @@ final public class Delays {
     public boolean skipped() {
         return this.SKIPPED;
     }
+
     public void changeSkipped(boolean Bool) {
         this.SKIPPED = Bool;
-        if(this.SKIPPED) this.Sounds.changeNoteDelayAndFilter(1);
+        if (this.SKIPPED) this.Sounds.changeNoteDelayAndFilter(1);
     }
 
     public void sleep(double millis) {
@@ -137,26 +142,33 @@ final public class Delays {
                 return;
             }
 
-        this.delay += (millis * (1 / this.SLEEPRATIO));
-        this.currentDelay = (millis * (1 / this.SLEEPRATIO));
-        
-        this.Sounds.changeNoteDelayAndFilter((int) this.currentDelay);
-        
-        try {
-            // With this for loop, you can change the speed of sorts without waiting for the current delay to finish.
-            if(!this.SKIPPED) {
-                while(this.delay >= 1) {
-                    Thread.sleep(1);
-                    this.delay--;
+            this.delay += (millis * (1 / this.SLEEPRATIO));
+            this.currentDelay = (millis * (1 / this.SLEEPRATIO));
+
+            this.Sounds.changeNoteDelayAndFilter((int) this.currentDelay);
+
+            try {
+                // With this for loop, you can change the speed of sorts without waiting for the current delay to finish.
+                if (!this.SKIPPED) {
+                    while (this.delay >= 1) {
+                        Thread.sleep(1);
+                        this.delay--;
+                    }
+                } else {
+                    this.delay = 0;
                 }
+            } catch (Exception ex) {
+                JErrorPane.invokeErrorMessage(ex);
             }
-            else {
-                this.delay = 0;
+
+            this.currentDelay = 0;
+        }else{
+            try {
+                Thread.sleep((long) delay);
+                SystemUtils.sleepInNanos((int) ((delay % 1) * 1000000));
+            } catch (Exception ex) {
+                Logger.getLogger(ArrayVisualizer.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch(Exception ex) {
-            JErrorPane.invokeErrorMessage(ex);
         }
-        
-        this.currentDelay = 0;
     }
 }

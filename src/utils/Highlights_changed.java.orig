@@ -1,14 +1,15 @@
 package utils;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
-import main.ArrayVisualizer;
-
+import utils.Mark;
 /*
- *
+ * 
 MIT License
 
 Copyright (c) 2019 w0rthy
@@ -34,6 +35,10 @@ SOFTWARE.
  */
 
 final public class Highlights {
+    // private volatile int[] Highlights;
+
+    //private volatile HashMap<Integer, Color> Highlights;
+
     private volatile ArrayList<Mark> Highlights;
 
     private volatile int maxIndexMarked;    // The Highlights array is huge and slows down the visualizer if all its indices are read.
@@ -55,29 +60,17 @@ final public class Highlights {
     private volatile int markCount;
 
     private boolean FANCYFINISH;
-    private volatile boolean fancyFinish;
-    private volatile int trackFinish;
-
-
     private boolean marksEnabled;
     private boolean AdditionalMarksEnabled;
     private boolean sortedMarksEnabled;
-
+    private volatile boolean fancyFinish;
+    private volatile int trackFinish;
     private volatile int maximumLength;
 
-    private ArrayVisualizer ArrayVisualizer;
-
-    public Highlights(ArrayVisualizer ArrayVisualizer, int maximumLength) {
-        this.ArrayVisualizer = ArrayVisualizer;
-
+    public Highlights(int maximumLength) {
         //this.Highlights = new int[maximumLength];
         this.Highlights = new ArrayList<>(maximumLength + 10);
-
-
         this.FANCYFINISH = true;
-        this.maxIndexMarked = 0;
-        this.markCount = 0;
-
         this.marksEnabled = true;
         this.AdditionalMarksEnabled = true;
         this.sortedMarksEnabled = true;
@@ -92,20 +85,46 @@ final public class Highlights {
         }
     }
 
+    public void setMarksEnabled(boolean value) {
+        this.marksEnabled = value;
+    }
+
+    public boolean getMarksEnabled() {
+        return this.marksEnabled;
+    }
+
+    public int getMaximumLength() {
+        return this.maximumLength;
+    }
+
+    public void setAdditionalMarksEnabled(boolean value) {
+        this.AdditionalMarksEnabled = value;
+    }
+
+    public boolean getAdditionalMarksEnabled() {
+        return this.AdditionalMarksEnabled;
+    }
+
+    public void setSortedMarksEnabled(boolean value) {
+        this.sortedMarksEnabled = value;
+    }
+
+    public boolean getsortedMarksEnabled() {
+        return this.sortedMarksEnabled;
+    }
+
     public boolean fancyFinishEnabled() {
         return this.FANCYFINISH;
     }
+
     public void toggleFancyFinishes(boolean Bool) {
         this.FANCYFINISH = Bool;
-    }
-
-    public int getMaximumLength(){
-        return this.maximumLength;
     }
 
     public boolean fancyFinishActive() {
         return this.fancyFinish;
     }
+
     public void toggleFancyFinish(boolean Bool) {
         this.fancyFinish = Bool;
     }
@@ -113,26 +132,25 @@ final public class Highlights {
     public int getFancyFinishPosition() {
         return this.trackFinish;
     }
+
     public void incrementFancyFinishPosition() {
         this.trackFinish++;
     }
+
     public void resetFancyFinish() {
         this.trackFinish = -1; // Magic number that clears the green sweep animation
-    }
-
-    //TODO: Move Analysis to Highlights
-    public void toggleAnalysis(boolean Bool) {
-        this.ArrayVisualizer.toggleAnalysis(Bool);
     }
 
     public int getMaxIndex() {
         return this.maxIndexMarked;
     }
+
     public int getMarkCount() {
         return this.markCount;
     }
 
     //Consider revising highlightList().
+    //public int[] highlightList() {
     public ArrayList<Mark> highlightList() {
         return this.Highlights;
     }

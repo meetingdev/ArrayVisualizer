@@ -1,9 +1,7 @@
 package templates;
+import utils.*;
 
-import utils.Delays;
-import utils.Highlights;
-import utils.Reads;
-import utils.Writes;
+import java.awt.*;
 
 /*
  * 
