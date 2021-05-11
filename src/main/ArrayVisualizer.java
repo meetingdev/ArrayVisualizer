@@ -174,7 +174,8 @@ final public class ArrayVisualizer {
     private volatile boolean RAINBOW;
     private volatile boolean SPIRALDRAW;
     private volatile boolean WAVEDRAW;
-    
+    private volatile boolean STROKE;
+
     private volatile int cx;
     private volatile int cy;
     private volatile int ch;
@@ -195,7 +196,7 @@ final public class ArrayVisualizer {
     private Writes Writes;
 
     public ArrayVisualizer() {
-        this.currentLen = 2048;
+        this.currentLen = 64;
         this.equalItems = 1;
         
         this.Highlights = new Highlights(this, this.MAX_ARRAY_VAL);
@@ -238,6 +239,7 @@ final public class ArrayVisualizer {
         this.PIXELDRAW = false;
         this.RAINBOW = false;
         this.SPIRALDRAW = false;
+        this.STROKE = true;
  
         this.cx = 0;
         this.cy = 0;
@@ -630,7 +632,10 @@ final public class ArrayVisualizer {
     public void toggleWave(boolean Bool) {
         this.WAVEDRAW = Bool;
     }
-    
+    public void toggleStroke(boolean Bool) {
+        this.STROKE = Bool;
+    }
+
     public void setVisual(VisualStyles choice) {
         this.VisualStyles = choice;
     }
@@ -668,7 +673,10 @@ final public class ArrayVisualizer {
     public boolean waveEnabled() {
         return this.WAVEDRAW;
     }
-    
+    public boolean strokeEnabled() {
+        return this.STROKE;
+    }
+
     public DecimalFormat getNumberFormat() {
         return this.formatter;
     }

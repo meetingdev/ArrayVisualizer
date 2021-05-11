@@ -90,7 +90,7 @@ final public class ArrayFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         this.jLabel1 = new javax.swing.JLabel();
-        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 14, 11);
+        this.jSlider = new javax.swing.JSlider(SwingConstants.VERTICAL, 1, 14, 6);
 
         jLabel1.setText("Array Size");
 
