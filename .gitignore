@@ -1,2 +1,5 @@
 *.class
 /bin/
+.idea/
+
+ArrayVisualizer-master.iml
