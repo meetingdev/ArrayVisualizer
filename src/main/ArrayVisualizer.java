@@ -1,14 +1,6 @@
 package main;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Stroke;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -280,6 +272,8 @@ final public class ArrayVisualizer {
                         Font f = ArrayVisualizer.this.mainRender.getFont();
                         ArrayVisualizer.this.mainRender.setFont(ArrayVisualizer.this.typeFace);
 						ArrayVisualizer.this.mainRender.setColor(Color.BLACK);
+                        ArrayVisualizer.this.mainRender.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 						ArrayVisualizer.this.mainRender.drawString(ArrayVisualizer.this.category + ": " + ArrayVisualizer.this.heading, 17, (int)(ArrayVisualizer.this.cw/1280.0*30)+32);
                         ArrayVisualizer.this.mainRender.drawString(ArrayVisualizer.this.formatter.format(ArrayVisualizer.this.currentLen) + " Numbers", 17, (int)(ArrayVisualizer.this.cw/1280.0*55)+32);
                         ArrayVisualizer.this.mainRender.drawString(String.format("Delay: " + ArrayVisualizer.this.Delays.displayCurrentDelay() + "ms"), 17, (int)(ArrayVisualizer.this.cw/1280.0*95)+32);
