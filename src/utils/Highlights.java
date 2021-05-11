@@ -1,6 +1,8 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import main.ArrayVisualizer;
 
@@ -31,7 +33,7 @@ SOFTWARE.
  */
 
 final public class Highlights {
-    private volatile int[] Highlights;
+    private volatile ArrayList<Mark> Highlights;
     
     private volatile int maxIndexMarked;    // The Highlights array is huge and slows down the visualizer if all its indices are read.
                                             // In an attempt to speed up the containsPosition() method while also giving anyone room
@@ -56,16 +58,20 @@ final public class Highlights {
     private volatile int trackFinish;
     
     private ArrayVisualizer ArrayVisualizer;
-    
+
     public Highlights(ArrayVisualizer ArrayVisualizer, int maximumLength) {
         this.ArrayVisualizer = ArrayVisualizer;
         
-        this.Highlights = new int[maximumLength];
+        this.Highlights = new ArrayList<Mark>(maximumLength);
+//        this.Highlights = new int[maximumLength];
         this.FANCYFINISH = true;
         this.maxIndexMarked = 0;
         this.markCount = 0;
         
-        Arrays.fill(Highlights, -1);
+//        Arrays.fill(Highlights, -1);
+        for (int i = 0; i < maximumLength + 10; ++i) {
+            Highlights.add(new Mark(-1));
+        }
     }
     
     public boolean fancyFinishEnabled() {
@@ -105,15 +111,15 @@ final public class Highlights {
     }
     
     //Consider revising highlightList().
-    public int[] highlightList() {
+    public ArrayList<Mark> highlightList() {
         return this.Highlights;
     }
     public boolean containsPosition(int arrayPosition) {
         for(int i = 0; i <= this.maxIndexMarked; i++) {
-            if(Highlights[i] == -1) {
+            if(Highlights.get(i).getPosition() == -1) {
                 continue;
             }
-            else if(Highlights[i] == arrayPosition) {
+            else if(Highlights.get(i).getPosition() == arrayPosition) {
                 return true;
             }
         }
@@ -128,7 +134,7 @@ final public class Highlights {
                 else throw new Exception("Highlights.markArray(): Invalid position!");
             }
             else {
-                Highlights[marker] = markPosition;
+                Highlights.get(marker).setPosition(markPosition);
                 this.markCount++;
                 
                 if(marker > this.maxIndexMarked) {
@@ -141,14 +147,14 @@ final public class Highlights {
         }
     }
     public void clearMark(int marker) {
-        Highlights[marker] = -1; // -1 is used as the magic number to unmark a position in the main array
+        Highlights.get(marker).setPosition(-1); // -1 is used as the magic number to unmark a position in the main array
         this.markCount--;
         
         if(marker == this.maxIndexMarked) {
             this.maxIndexMarked = 0;
             
             for(int i = marker - 1; i >= 0; i--) {
-                if(Highlights[i] != -1) {
+                if(Highlights.get(i).getPosition() != -1) {
                     this.maxIndexMarked = i;
                     break;
                 }
@@ -156,7 +162,8 @@ final public class Highlights {
         }
     }
     public void clearAllMarks() {
-        Arrays.fill(this.Highlights, -1);
+//        Arrays.fill(this.Highlights, -1);
+        Collections.fill(Highlights, new Mark(-1));
         this.maxIndexMarked = 0;
         this.markCount = 0;
     }
