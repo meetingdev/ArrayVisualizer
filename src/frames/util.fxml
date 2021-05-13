@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="204.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <BorderPane prefHeight="400.0" prefWidth="282.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Settings" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <bottom>
+            <VBox alignment="TOP_CENTER" prefHeight="468.0" prefWidth="149.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="visualStyleBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Visual Style" />
+                  <CheckBox fx:id="linkedDotsCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Linked Dots" />
+                  <CheckBox fx:id="enableColorCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Enable Color" />
+                  <CheckBox fx:id="enableStrokeCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Enable Stroke" />
+                  <Button fx:id="speedBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Change Speed" />
+                  <Button fx:id="chooseSortBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Choose Sort" />
+                  <Button fx:id="skipSortBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Skip Sort" />
+                  <Button fx:id="chooseShuffleBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Choose Shuffle" />
+                  <CheckBox fx:id="showShuffleCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Show Shuffle" />
+                  <CheckBox fx:id="enableSoundsCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Enable Sounds" />
+                  <CheckBox fx:id="softerSoundsCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Softer Sounds" />
+                  <CheckBox fx:id="sweepAnimCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="End SweepAnim" />
+                  <Button fx:id="clearStatsBtn" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Clear Stats" />
+                  <CheckBox fx:id="displayStatsCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Display Stats" />
+                  <CheckBox fx:id="calcRealTimeCB" mnemonicParsing="false" styleClass="listElement" stylesheets="@utilStyle.css" text="Calc Real Time" />
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </right>
+   <left>
+      <BorderPane prefHeight="505.0" prefWidth="66.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Array Size" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <bottom>
+            <Label fx:id="sizeLabel" text="64" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
+         <center>
+            <Slider fx:id="sizeSlider" blockIncrement="1.0" max="14.0" min="2.0" orientation="VERTICAL" value="6.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+            </Slider>
+         </center>
+      </BorderPane>
+   </left>
+</BorderPane>
