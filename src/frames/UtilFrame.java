@@ -5,6 +5,7 @@
 package frames;
 
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.Hashtable;
 
 import javax.swing.JFrame;
@@ -14,6 +15,11 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import main.ArrayManager;
 import main.ArrayVisualizer;
 import prompts.ShufflePrompt;
@@ -80,7 +86,19 @@ final public class UtilFrame extends javax.swing.JFrame {
         this.Highlights = ArrayVisualizer.getHighlights();
         this.RealTimer = ArrayVisualizer.getTimer();
         this.Sounds = ArrayVisualizer.getSounds();
-        
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("util.fxml"));
+            Stage stage = new Stage();
+
+            stage.setTitle("Util");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         setUndecorated(true);
         initComponents();
         setLocation(Math.min((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() - getWidth(), Frame.getX() + Frame.getWidth()), Frame.getY() + 29);
@@ -343,7 +361,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
+    public void jButton1ActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
         //CHANGE SORT
         if(this.abstractFrame != null && abstractFrame.isVisible()){
             boolean tmp = this.abstractFrame instanceof SortPrompt;
@@ -362,7 +380,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         jButton1.setText("Choose Sort");
     }
 
-    private void jButton2ActionPerformed() {//GEN-FIRST:event_jButton2ActionPerformed
+    public void jButton2ActionPerformed() {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //CHANGE VIEW
         if(this.abstractFrame != null && abstractFrame.isVisible()){
@@ -382,7 +400,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         jButton2.setText("Visual Style");
     }
 
-    private void jButton3ActionPerformed() {//GEN-FIRST:event_jButton3ActionPerformed
+    public void jButton3ActionPerformed() {//GEN-FIRST:event_jButton3ActionPerformed
         boolean speedPromptAllowed;
         
         if(this.abstractFrame == null) {
@@ -432,7 +450,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         Highlights.toggleFancyFinishes(jCheckBox3.isSelected());
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
-    private void jButton4ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
+    public void jButton4ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
         Delays.changeSkipped(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -440,7 +458,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         RealTimer.toggleRealTimer(jCheckBox4.isSelected());
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
-    private void jButton5ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
+    public void jButton5ActionPerformed() {//GEN-FIRST:event_jButton4ActionPerformed
         ArrayVisualizer.resetAllStatistics();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -453,7 +471,7 @@ final public class UtilFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
-    private void jButton6ActionPerformed() {//GEN-FIRST:event_jButton2ActionPerformed
+    public void jButton6ActionPerformed() {//GEN-FIRST:event_jButton2ActionPerformed
         //CHANGE SIZE
         if(this.abstractFrame != null && abstractFrame.isVisible()){
             boolean tmp = this.abstractFrame instanceof ShufflePrompt;
